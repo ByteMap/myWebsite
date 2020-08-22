@@ -1,1 +1,80 @@
 /* You can add global styles to this file, and also import other style files */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0
+}
+
+.page-header {
+  font: 4rem "Chalkboard", serif !important;
+  text-align: center;
+}
+
+.page-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  margin: 0 !important;
+  background-size: cover;
+  z-index: -1;
+}
+
+.font-ComicSans {
+  font: 1.25rem "Comic Sans MS", serif;
+}
+
+.row:after {
+  display: table;
+  content: " ";
+}
+
+.columnThirds {
+  display: inline-block;
+  width: 33.33%;
+}
+
+.column-onethird {
+  text-align: left;
+}
+
+.column-twothird {
+  text-align: center;
+}
+
+.column-threethird {
+  text-align: right;
+}
+
+.body-padding-1 {
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
+
+.body-padding-2 {
+  padding-left: 12rem;
+  padding-right: 12rem;
+}
+
+.pt-1 {
+  padding-top: 1rem;
+}
+
+.pt-2 {
+  padding-top: 2rem;
+}
+
+.pt-3 {
+  padding-top: 3rem;
+}
+
+.pt-4 {
+  padding-top: 4rem;
+}
+
+.pt-5 {
+  padding-top: 5rem;
+}

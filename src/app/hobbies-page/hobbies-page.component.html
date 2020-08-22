@@ -1,0 +1,36 @@
+<div class="page-container" [ngStyle]="{'backgroundImage': backgroundImage }">
+  <h1 class="page-header"> My Hobbies </h1>
+  <div>
+    <div class="content-header font-ComicSans">
+        Just like everyone else, having hobbies is an important essential. For me, my hobbies help me through forgetting
+        about things that stresses me out so that I can unwind and reset myself. Additionally, some of my hobbies had
+        expanded my knowledge on topics that I did not know that I would explore. Below is a handful of hobbies that I have
+        picked up over the years.
+    </div>
+    <mat-tab-group class="tab-container" mat-align-tabs="center" [ngStyle]="{'backgroundColor': contentContainerColor}" (selectedTabChange)="changeBackground($event)">
+      <mat-tab label="Games">
+      </mat-tab>
+      <mat-tab label="Anime and Manga">
+        <div class="tabs-content font-ComicSans">
+          Watching anime and reading manga is probably my favorite pastime right now. Both of these hobbies never fail to
+          entertain me as there is not only a vast selection available to choose from, but also they ultimately visualize
+          different stories for me. While reading or watching the stories presented to me, I end up being isolated from the
+          problems plagued by reality, and instead inside the fictional world of those stories. These two hobbies
+          essentially act as a cleanser for the stress and anxiety that I accumulate on a daily basis and allow for myself
+          to reset. There have been many instances where these two hobbies of mine have allowed me to calm down and think
+          more clearly, which is why I see them as my most important and enjoyable hobbies.
+        </div>
+      </mat-tab>
+      <mat-tab label="Stocks">
+        <ng-template matTabContent class="tabs-content font-ComicSans">
+
+        </ng-template>
+      </mat-tab>
+      <mat-tab label="Music">
+        <ng-template matTabContent class="tabs-content font-ComicSans">
+
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
