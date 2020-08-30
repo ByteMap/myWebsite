@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomePageComponent } from './home-page/home-page.component';
 import { HobbiesPageComponent } from './hobbies-page/hobbies-page.component';
 import { ExperiencePageComponent } from './experience-page/experience-page.component';
-import { fadeAnimation } from './animations';
 
 
 const routes: Routes = [
