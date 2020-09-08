@@ -1,14 +1,73 @@
 <div class="home-container">
 <!--   <header class="font-Arial-Rounded"> abcdefg </header>-->
-  <section class="introduction font-Arial-Rounded">
-    <div class="intro-container">
+  <section class="homePage-sections font-Arial-Rounded intro-container">
+    <div class="intro-container-left">
       <div>Hey, nice to meet you!</div>
-      <div>I'm <span class="name fw-b"> Andy Chen </span> </div>
+      <div>I'm <span class="name fw-b"> Andy Chen</span>. </div>
     </div>
-    <div class="image-container">
+    <div class="vertical-divider"></div>
+    <div class="intro-container-right"> Software Engineer</div>
+  </section>
+  <section class="homePage-sections font-Arial-Rounded">
+    <div class="desc-container">
+      <div class="fs-80 fw-b"> About Me </div>
+      <hr class="horizontal-divider">
+      <div class="font-Droid-Serif fs-50">
+        <div> Hi there! I'm Andy, a Junior Software Engineer. </div>
+        <div class="pt-2">
+          I graduated from the University of California, Santa Cruz with a B.S. in Computer Science during the summer of 2020.
+        </div>
+        <div class="pt-2">
+          I really enjoy programming as it gives me a great sense of satisfaction every time I get something to work, and understand why it works.
+          Programming to me is like working on a massive jigsaw puzzle with each piece being something that I will have to learn whether they be new
+          technologies or methodologies. By piecing everything together, something magnificent can then be created.
+        </div>
+        <div class="pt-2">
+          For the past year, I had the honor of working at the UCSC Genomics Institute as a Full Stack Web Developer for the Dockstore project.
+          Not only was I able to learn more about the industry that I was headed into, but I was also able to learn about new coding practices, methodologies,
+          and technologies. My time at the Genomics Institute had ultimately given me more experienced than I had hoped for in order to start off my career.
+        </div>
+      </div>
+    </div>
+    <div class="image-container pl-2">
       <img class="profile-image" src="/assets/images/home-page-images/profile-image.png" alt="Avatar">
     </div>
   </section>
-  <section>
+  <section class="homePage-sections">
+    <div>
+      <mat-card [routerLink]="'/my-experience'">
+        <mat-card-title>
+          My Experience
+        </mat-card-title>
+        <mat-card-content>
+          <button>
+            abcdefg
+          </button>
+        </mat-card-content>
+      </mat-card>
+      <mat-card>
+        <mat-card-title>
+          My Projects
+        </mat-card-title>
+        <mat-card-content>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div>
+      <mat-card>
+        <mat-card-title>
+          My Experiences
+        </mat-card-title>
+        <mat-card-content>
+        </mat-card-content>
+      </mat-card>
+      <mat-card>
+        <mat-card-title>
+          My Projects
+        </mat-card-title>
+        <mat-card-content>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </section>
 </div>

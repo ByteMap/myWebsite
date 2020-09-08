@@ -1,35 +1,67 @@
 .home-container {
-  position: absolute;
-  background-color: #52708a;
   box-sizing: border-box;
   overflow: auto;
 }
 
-.image-container {
-  flex-shrink: 1;
-  padding-right: 15%;
-  width: 100%;
+.homePage-sections {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  padding-left: 20%;
+  padding-right: 20%;
 }
 
-
-.intro-container {
-  float: left;
+.image-container {
+  float: right;
   flex-shrink: 1;
-  padding-left: 15%;
-  padding-top: 15%;
-  width: 100%;
+  width: 50%;
+  padding-top: 5%;
 }
 
 .profile-image {
-  border-radius: 50%;
+  border-radius: 15%;
   width: 100%;
 }
 
-.introduction {
-  display: flex;
-  padding: 10% 10% 20%;
+.intro-container-left {
+  float: left;
+  align-items: center;
+}
+
+.intro-container-right {
+  float: right;
+  align-items: center;
+}
+
+.vertical-divider {
+  border: 0.05rem solid black;
+  height: 12rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+
+.desc-container {
+  float: left;
+  flex-shrink: 1;
+  width: 100%;
 }
 
 .name {
   color: white;
+}
+
+.fs-80 {
+  font-size: 2rem
+}
+
+.fs-50 {
+  font-size: 1.25rem;
+}
+
+.horizontal-divider {
+  display: block;
+  margin-top: 0;
+  border: 0;
+  border-top: 0.1rem solid;
+  width: 100%;
 }

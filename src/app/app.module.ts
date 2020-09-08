@@ -17,7 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ExperiencePageComponent } from './experience-page/experience-page.component';
-import {RouterModule} from '@angular/router';
+import { MatCardModule } from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -39,7 +39,8 @@ import {RouterModule} from '@angular/router';
     MatListModule,
     MatIconModule,
     MatTabsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatCardModule
   ],
   providers: [
     HobbiesPageService
