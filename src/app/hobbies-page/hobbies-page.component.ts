@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { HobbiesPageService } from './hobbies-page.service';
+import {MatDialog} from "@angular/material/dialog";
+import {ContentDialogService} from "../content-dialog/content-dialog.service";
+import {ContentDialogData} from "../content-dialog/content-dialog.component";
 
+export interface Hobby {
+  title: string;
+  content: string;
+}
 
 @Component({
   selector: 'app-hobbies-page',
@@ -8,6 +15,7 @@ import { HobbiesPageService } from './hobbies-page.service';
   styleUrls: ['./hobbies-page.component.scss'],
 })
 export class HobbiesPageComponent implements OnInit {
+  view = 'grid';
   backgroundImage: string;
   contentContainerColor: string;
   gamesImage = 'url(\'../assets/images/hobbies-page-images/Games-Background.jpg\')';
@@ -19,7 +27,18 @@ export class HobbiesPageComponent implements OnInit {
   musicImage = 'url(\'../assets/images/hobbies-page-images/Music-Background.jpg\')';
   musicContainerColor = '#5F676D';
 
-  constructor(private hobbiesPageService: HobbiesPageService) { }
+  hobbies: Array<Hobby> = [
+    {title: 'Anime', content: ''},
+    {title: 'Games', content: ''},
+    {title: 'Stocks', content: ''},
+    {title: 'Music', content: ''},
+  ];
+
+  constructor(
+    private hobbiesPageService: HobbiesPageService,
+    private dialog: MatDialog,
+    private contentDialogService: ContentDialogService
+  ) { }
 
   ngOnInit(): void {
     this.backgroundImage = 'url(\'../assets/images/hobbies-page-images/Hobbies-Background.jpg\')';
@@ -47,6 +66,14 @@ export class HobbiesPageComponent implements OnInit {
       this.hobbiesPageService.changeImage(this.musicImage);
       this.hobbiesPageService.changeColor(this.musicContainerColor);
     }
+  }
+
+  openDialog(hobby: Hobby) {
+    const contentDialogData: ContentDialogData = {
+      dialogTitle: hobby.title,
+      dialogContent: hobby.content
+    }
+    this.contentDialogService.openContentDialog(contentDialogData, "75rem");
   }
 
 }

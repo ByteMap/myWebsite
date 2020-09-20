@@ -1,9 +1,8 @@
 <div class="home-container">
-<!--   <header class="font-Arial-Rounded"> abcdefg </header>-->
   <section class="homePage-sections font-Arial-Rounded intro-container">
     <div class="intro-container-left">
       <div>Hey, nice to meet you!</div>
-      <div>I'm <span class="name fw-b"> Andy Chen</span>. </div>
+      <div>I'm <span class="white-text fw-b"> Andy Chen</span>. </div>
     </div>
     <div class="vertical-divider"></div>
     <div class="intro-container-right"> Software Engineer</div>
@@ -33,41 +32,26 @@
       <img class="profile-image" src="/assets/images/home-page-images/profile-image.png" alt="Avatar">
     </div>
   </section>
-  <section class="homePage-sections">
-    <div>
-      <mat-card [routerLink]="'/my-experience'">
-        <mat-card-title>
-          My Experience
-        </mat-card-title>
-        <mat-card-content>
-          <button>
-            abcdefg
-          </button>
-        </mat-card-content>
-      </mat-card>
-      <mat-card>
-        <mat-card-title>
-          My Projects
-        </mat-card-title>
-        <mat-card-content>
-        </mat-card-content>
-      </mat-card>
-    </div>
-    <div>
-      <mat-card>
-        <mat-card-title>
-          My Experiences
-        </mat-card-title>
-        <mat-card-content>
-        </mat-card-content>
-      </mat-card>
-      <mat-card>
-        <mat-card-title>
-          My Projects
-        </mat-card-title>
-        <mat-card-content>
-        </mat-card-content>
-      </mat-card>
-    </div>
+  <section class="card-section vh-100" fxLayout="row wrap">
+    <mat-card class="card-style" fxFlex="48%" fxFlex.xs="100%" fxFlex.sm="100%" [routerLink]="'/my-experience'">
+      <mat-card-title>
+        My Experience
+      </mat-card-title>
+    </mat-card>
+    <mat-card class="card-style" fxFlex="48%" fxFlex.xs="100%" fxFlex.sm="100%">
+      <mat-card-title>
+        My Projects
+      </mat-card-title>
+    </mat-card>
+    <mat-card class="card-style" fxFlex="48%" fxFlex.xs="100%" fxFlex.sm="100%">
+      <mat-card-title>
+        My Education
+      </mat-card-title>
+    </mat-card>
+    <mat-card class="card-style" fxFlex="48%" fxFlex.xs="100%" fxFlex.sm="100%" [routerLink]="'/my-hobbies'">
+      <mat-card-title>
+        My Hobbies
+      </mat-card-title>
+    </mat-card>
   </section>
 </div>

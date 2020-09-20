@@ -9,6 +9,10 @@ body {
   margin: 0
 }
 
+.vh-100 {
+  height: 100vh;
+}
+
 .page-header {
   font: 4rem "Chalkboard", serif !important;
   text-align: center;
@@ -33,6 +37,26 @@ body {
   width: 100%;
   margin: 0 !important;
   background-size: cover;
+}
+
+.card-section {
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+.card-style {
+  background-color: #85a3ba;
+  height: 15rem;
+  margin: 0.5rem;
+  transition: all .25s linear;
+  cursor: pointer;
+}
+
+.card-style:hover {
+  box-shadow: -1px 10px 29px 0px rgba(0,0,0,0.8);
 }
 
 .font-ComicSans {

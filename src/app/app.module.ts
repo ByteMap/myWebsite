@@ -18,6 +18,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ExperiencePageComponent } from './experience-page/experience-page.component';
 import { MatCardModule } from "@angular/material/card";
+import { MatGridListModule } from "@angular/material/grid-list";
+import { MatDialogModule } from "@angular/material/dialog";
+import { ContentDialogComponent } from "./content-dialog/content-dialog.component";
 
 @NgModule({
   declarations: [
@@ -25,7 +28,8 @@ import { MatCardModule } from "@angular/material/card";
     HomePageComponent,
     HobbiesPageComponent,
     SidebarNavigationComponent,
-    ExperiencePageComponent
+    ExperiencePageComponent,
+    ContentDialogComponent
   ],
   imports: [
     AppRoutingModule,
@@ -40,7 +44,9 @@ import { MatCardModule } from "@angular/material/card";
     MatIconModule,
     MatTabsModule,
     FontAwesomeModule,
-    MatCardModule
+    MatCardModule,
+    MatGridListModule,
+    MatDialogModule
   ],
   providers: [
     HobbiesPageService
