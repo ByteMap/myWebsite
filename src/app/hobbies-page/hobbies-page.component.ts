@@ -7,6 +7,7 @@ import {ContentDialogData} from "../content-dialog/content-dialog.component";
 export interface Hobby {
   title: string;
   content: string;
+  imagePath: string;
 }
 
 @Component({
@@ -15,7 +16,7 @@ export interface Hobby {
   styleUrls: ['./hobbies-page.component.scss'],
 })
 export class HobbiesPageComponent implements OnInit {
-  view = 'grid';
+  view = 'default';
   backgroundImage: string;
   contentContainerColor: string;
   gamesImage = 'url(\'../assets/images/hobbies-page-images/Games-Background.jpg\')';
@@ -28,10 +29,57 @@ export class HobbiesPageComponent implements OnInit {
   musicContainerColor = '#5F676D';
 
   hobbies: Array<Hobby> = [
-    {title: 'Anime', content: ''},
-    {title: 'Games', content: ''},
-    {title: 'Stocks', content: ''},
-    {title: 'Music', content: ''},
+    { title:   `<div class="font-Droid-Serif fs-50 fw-b">
+                Anime & Manga
+                </div>`,
+      content: `<div class="font-Droid-Serif fs-50">
+                    <div>
+                      I've loved watching Animes and reading Mangas ever since I was in middle school. For me,
+                      these two hobbies were not only a form of entertainment, but also a way for me to forget
+                      about my problems for a short amount of time. They have ultimately acted as my best coping
+                      mechanism for stress and anxiety, which allowed me to reset myself and perform even better
+                      on things such as work and school.
+                    </div>
+                    <div class="pt-2">
+                      Some of my favorite Animes and Mangas are: <b>Re:Zero, Steins;Gate, and Gundam 00</b>
+                    </div>
+                </div>`,
+      imagePath: '../assets/images/hobbies-page-images/anime-image.png' },
+    { title:   `<div class="font-Droid-Serif fs-50 fw-b">
+                Games
+                </div>`,
+      content: `<div class="font-Droid-Serif fs-50">
+                    <div>
+                      I've loved watching Animes and reading Mangas ever since I was in middle school. For me,
+                      these two hobbies were not only a form of entertainment, but also a way for me to forget
+                      about my problems for a short amount of time. They have ultimately acted as my best coping
+                      mechanism for stress and anxiety, which allowed me to reset myself and perform even better
+                      on things such as work and school.
+                    </div>
+                    <div class="pt-2">
+                      Some of my favorite Animes and Mangas are: <b>Re:Zero, Steins;Gate, and Gundam 00</b>
+                    </div>
+                </div>`,
+      imagePath: '../assets/images/hobbies-page-images/game-image.png' },
+    { title: 'Stocks',
+      content: '',
+      imagePath: '' },
+    { title: `<div class="font-Droid-Serif fs-50 fw-b">
+              Programming
+              </div>`,
+      content: `<div class="font-Droid-Serif fs-50">
+                    <div>
+                      Programming is my job as well as my hobby. During my weekends and holidays, I would try to at least
+                      progress a little bit with my projects and discover new frameworks and libraries to use. Most of my
+                      projects are centered around visualizing data and aiding users such as myself. For example, LinkMarker
+                      was created so that I could visually blacklist Mangas as some of them would have a poor story, but a
+                      fantastic cover which baits me into clicking on the link every time a new chapter for that Manga is out.
+                    </div>
+                </div>`,
+      imagePath: '' },
+    { title: 'Music',
+      content: '',
+      imagePath: '../assets/images/hobbies-page-images/music-image.png' },
   ];
 
   constructor(
@@ -73,7 +121,7 @@ export class HobbiesPageComponent implements OnInit {
       dialogTitle: hobby.title,
       dialogContent: hobby.content
     }
-    this.contentDialogService.openContentDialog(contentDialogData, "75rem");
+    this.contentDialogService.openContentDialog(contentDialogData, "50rem");
   }
 
 }

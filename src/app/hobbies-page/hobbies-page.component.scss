@@ -24,3 +24,50 @@
   text-align: justify;
   padding: 2rem;
 }
+
+mat-card {
+  padding-bottom: 0;
+}
+
+.grid-view-card-style {
+  padding-right: 5rem;
+  padding-left: 5rem;
+  align-items: center;
+  align-content: center;
+}
+
+.default-view-card-style {
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+
+.image-style {
+  position: relative;
+  left: 5rem;
+  display: flex;
+}
+
+.image-container {
+  float: left;
+  flex-shrink: 1;
+  padding-top: 5%;
+}
+
+.image-size {
+  width: 100%;
+}
+
+.desc-container {
+  float: right;
+  flex-shrink: 1;
+  width: 100%;
+}
+
+.sections {
+  display: flex;
+  align-items: center;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 1%;
+}

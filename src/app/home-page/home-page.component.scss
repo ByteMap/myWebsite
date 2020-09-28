@@ -50,18 +50,20 @@
   color: white;
 }
 
-.fs-80 {
-  font-size: 2rem
-}
-
-.fs-50 {
-  font-size: 1.25rem;
-}
-
 .horizontal-divider {
   display: block;
   margin-top: 0;
   border: 0;
   border-top: 0.1rem solid;
   width: 100%;
+}
+
+.grid-view-card-style {
+  height: 15rem;
+  margin: 0.5rem;
+}
+
+.custom {
+  padding-left: 20%;
+  padding-right: 20%;
 }

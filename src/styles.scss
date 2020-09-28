@@ -30,6 +30,14 @@ body {
   font-weight: bold;
 }
 
+.fs-80 {
+  font-size: 2rem
+}
+
+.fs-50 {
+  font-size: 1.25rem;
+}
+
 .page-container {
   position: absolute;
   top: 0;
@@ -43,19 +51,18 @@ body {
   justify-content: center;
   align-content: center;
   align-items: center;
-  padding-left: 20%;
-  padding-right: 20%;
 }
 
 .card-style {
   background-color: #85a3ba;
-  height: 15rem;
-  margin: 0.5rem;
   transition: all .25s linear;
+}
+
+.card-style-pointer {
   cursor: pointer;
 }
 
-.card-style:hover {
+.card-style-pointer:hover {
   box-shadow: -1px 10px 29px 0px rgba(0,0,0,0.8);
 }
 
