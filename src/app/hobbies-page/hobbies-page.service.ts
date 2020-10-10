@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable()
 export class HobbiesPageService {
-  private listView = new BehaviorSubject<boolean>(true);
-  currentView$ = this.listView.asObservable();
+  listViewState: boolean;
+  private listView;
+  currentView$: Observable<boolean>;
 
   constructor() {
+    this.listViewState = JSON.parse(localStorage.getItem('hobbiesPageIsListView'));
+    this.listView = new BehaviorSubject<boolean>(this.listViewState);
+    this.currentView$ = this.listView.asObservable();
   }
 
   changeView(newView: boolean) {
     this.listView.next(newView);
-    console.log(this.listView);
+    localStorage.setItem('hobbiesPageIsListView', JSON.stringify(newView));
   }
 }

@@ -105,5 +105,4 @@ export class HobbiesPageComponent implements OnInit {
   changeView(newView: boolean) {
     this.hobbiesPageService.changeView(newView);
   }
-
 }
