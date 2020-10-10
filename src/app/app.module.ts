@@ -21,6 +21,7 @@ import { MatCardModule } from "@angular/material/card";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatDialogModule } from "@angular/material/dialog";
 import { ContentDialogComponent } from "./content-dialog/content-dialog.component";
+import { PageHeaderComponent } from "./page-header/page-header.component";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ContentDialogComponent } from "./content-dialog/content-dialog.componen
     HobbiesPageComponent,
     SidebarNavigationComponent,
     ExperiencePageComponent,
-    ContentDialogComponent
+    ContentDialogComponent,
+    PageHeaderComponent
   ],
   imports: [
     AppRoutingModule,
