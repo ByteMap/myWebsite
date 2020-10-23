@@ -4,6 +4,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 export class ContentDialogData {
   dialogTitle?: string;
   dialogContent?: string;
+  dialogHeaderStyle?: string;
+  dialogContentStyle?: string;
 }
 
 @Component({

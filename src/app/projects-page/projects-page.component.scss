@@ -1,0 +1,20 @@
+.header {
+  display: flex;
+}
+
+.title {
+  align-self: center;
+}
+
+.image-container {
+  float: left;
+  align-self: center;
+}
+
+.redirect {
+  margin-left: auto;
+}
+
+.interactable {
+  cursor: pointer;
+}

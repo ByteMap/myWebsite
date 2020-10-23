@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
-import { faHome, faList, faTh } from "@fortawesome/free-solid-svg-icons";
-import { HobbiesPageComponent } from "../hobbies-page/hobbies-page.component";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { faHome, faList, faTh, faSquare } from "@fortawesome/free-solid-svg-icons";
+import { pulseAnimation } from "../animations";
 
 @Component({
   selector: 'page-header',
@@ -16,6 +16,7 @@ export class PageHeaderComponent implements OnInit {
   homeIcon = faHome;
   listIcon = faList;
   gridIcon = faTh;
+  squareIcon = faSquare;
 
   constructor() {}
 

@@ -4,10 +4,24 @@
   padding-right: 10%;
 }
 
-.icon-style {
+.mat-icon {
+  vertical-align: middle;
+}
+
+.icon-container-style {
+  border-radius: 10%;
   font-size: 4rem;
-  align-self: center;
   cursor: pointer;
+  align-self: center;
+
+  transform: scale(1);
+  transition: all ease 1s;
+}
+
+.icon-container-style:hover {
+  color: white;
+  transform: scale(1.15);
+  transition: all ease 1s;
 }
 
 .page-title {

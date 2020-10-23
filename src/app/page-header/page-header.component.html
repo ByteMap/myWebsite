@@ -1,12 +1,12 @@
 <div class="hobbies-header">
-  <div class="icon-style">
-    <fa-icon [icon]="homeIcon"> </fa-icon>
+  <div class="icon-container-style" [routerLink]="'/home'">
+    <fa-icon class="icon-style" [icon]="homeIcon"> </fa-icon>
   </div>
   <div class="font-Arial-Rounded page-title"> {{title}} </div>
-  <div class="icon-style" *ngIf="listView">
-    <fa-icon [icon]="gridIcon" (click)="changeView(false)"></fa-icon>
+  <div class="icon-container-style" *ngIf="listView">
+    <fa-icon class="icon-style" [icon]="gridIcon" (click)="changeView(false)"></fa-icon>
   </div>
-  <div class="icon-style" *ngIf="!listView">
-    <fa-icon [icon]="listIcon" (click)="changeView(true)"></fa-icon>
+  <div class="icon-container-style" *ngIf="!listView">
+    <fa-icon class="icon-style" [icon]="listIcon" (click)="changeView(true)"></fa-icon>
   </div>
 </div>

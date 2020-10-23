@@ -48,26 +48,8 @@ mat-card {
   display: flex;
 }
 
-.default-image-style {
-  display: flex;
-  width: 100%;
-}
-
-.image-container {
-  float: left;
-  align-self: flex-end;
-}
-
 .desc-container {
   float: right;
   flex-shrink: 1;
   width: 100%;
-}
-
-.sections {
-  display: flex;
-  align-items: center;
-  padding-left: 10%;
-  padding-right: 10%;
-  padding-top: 1%;
 }

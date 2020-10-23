@@ -22,6 +22,10 @@ import { MatGridListModule } from "@angular/material/grid-list";
 import { MatDialogModule } from "@angular/material/dialog";
 import { ContentDialogComponent } from "./content-dialog/content-dialog.component";
 import { PageHeaderComponent } from "./page-header/page-header.component";
+import { ExperiencePageService } from "./experience-page/experience-page.service";
+import { ProjectsPageComponent } from "./projects-page/projects-page.component";
+import { ProjectsPageService } from "./projects-page/projects-page.service";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -31,27 +35,31 @@ import { PageHeaderComponent } from "./page-header/page-header.component";
     SidebarNavigationComponent,
     ExperiencePageComponent,
     ContentDialogComponent,
-    PageHeaderComponent
+    PageHeaderComponent,
+    ProjectsPageComponent
   ],
-  imports: [
-    AppRoutingModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    FlexLayoutModule,
-    LayoutModule,
-    MatSidenavModule,
-    MatButtonModule,
-    MatListModule,
-    MatIconModule,
-    MatTabsModule,
-    FontAwesomeModule,
-    MatCardModule,
-    MatGridListModule,
-    MatDialogModule
-  ],
+    imports: [
+        AppRoutingModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        FlexLayoutModule,
+        LayoutModule,
+        MatSidenavModule,
+        MatButtonModule,
+        MatListModule,
+        MatIconModule,
+        MatTabsModule,
+        FontAwesomeModule,
+        MatCardModule,
+        MatGridListModule,
+        MatDialogModule,
+        MatTooltipModule
+    ],
   providers: [
-    HobbiesPageService
+    HobbiesPageService,
+    ExperiencePageService,
+    ProjectsPageService
   ],
   bootstrap: [AppComponent]
 })
