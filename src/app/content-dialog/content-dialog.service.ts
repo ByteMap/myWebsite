@@ -13,7 +13,7 @@ export class ContentDialogService {
   openContentDialog(contentData: ContentDialogData, dialogSize: string): Observable<boolean> {
     const dialogRef = this.dialog.open(ContentDialogComponent, {
       width: dialogSize,
-      data: contentData
+      data: contentData,
     });
     return dialogRef.afterClosed();
   }

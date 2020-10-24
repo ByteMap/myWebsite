@@ -1,12 +1,26 @@
 <div class="hobbies-header">
-  <div class="icon-container-style" [routerLink]="'/home'">
+  <div class="icon-container-style white-font fs-160" [routerLink]="'/home'" fxHide fxShow.gt-sm fxShow.sm>
     <fa-icon class="icon-style" [icon]="homeIcon"> </fa-icon>
   </div>
-  <div class="font-Arial-Rounded page-title"> {{title}} </div>
-  <div class="icon-container-style" *ngIf="listView">
+  <div class="icon-container-style white-font fs-50" [routerLink]="'/home'" fxHide fxShow.lt-sm>
+    <fa-icon class="icon-style" [icon]="homeIcon"> </fa-icon>
+  </div>
+
+
+  <div class="font-Arial-Rounded page-title white-font fs-160 va-m" fxHide fxShow.gt-sm fxShow.sm> {{title}} </div>
+  <div class="font-Arial-Rounded page-title white-font fs-50 va-m" fxHide fxShow.lt-sm> {{title}} </div>
+
+  <div class="icon-container-style white-font fs-160" *ngIf="listView" fxHide fxShow.gt-sm fxShow.sm>
     <fa-icon class="icon-style" [icon]="gridIcon" (click)="changeView(false)"></fa-icon>
   </div>
-  <div class="icon-container-style" *ngIf="!listView">
+  <div class="icon-container-style white-font va-m fs-50" *ngIf="listView" fxHide fxShow.lt-sm>
+    <fa-icon class="icon-style" [icon]="gridIcon" (click)="changeView(false)"></fa-icon>
+  </div>
+
+  <div class="icon-container-style white-font fs-160" *ngIf="!listView" fxHide fxShow.gt-sm fxShow.sm>
+    <fa-icon class="icon-style" [icon]="listIcon" (click)="changeView(true)"></fa-icon>
+  </div>
+  <div class="icon-container-style white-font va-m fs-50" *ngIf="!listView" fxHide fxShow.lt-sm>
     <fa-icon class="icon-style" [icon]="listIcon" (click)="changeView(true)"></fa-icon>
   </div>
 </div>

@@ -4,13 +4,8 @@
   padding-right: 10%;
 }
 
-.mat-icon {
-  vertical-align: middle;
-}
-
 .icon-container-style {
   border-radius: 10%;
-  font-size: 4rem;
   cursor: pointer;
   align-self: center;
 
@@ -19,13 +14,16 @@
 }
 
 .icon-container-style:hover {
-  color: white;
+  color: #C9CAF8;
   transform: scale(1.15);
   transition: all ease 1s;
 }
 
 .page-title {
-  font-size: 4rem;
   width: 100%;
   text-align: center;
+}
+
+.fs-160 {
+  font-size: 4rem;
 }

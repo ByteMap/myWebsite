@@ -11,21 +11,27 @@
   <div [@experiencePageAnimation]="viewState" class="card-section grid-view-card-style pt-3" fxLayout="row wrap" fxLayoutGap="7rem grid">
     <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="50%" *ngFor="let experience of experiences; let i = index">
       <mat-card class="card-style custom-card-section custom-card-style card-style-pointer mat-elevation-z4" [ngClass]="'experience' + i" (click)="openDialog(experience)">
-        <b class="font-Droid-Serif fs-40 fw-b row">
+        <b class="font-Droid-Serif fs-40 fw-b row" fxHide fxShow.gt-md>
           <span class="columnThirds column-onethird"> {{experience.company}} </span>
           <span class="columnThirds column-twothird"> {{experience.position}}</span>
           <span class="columnThirds column-threethird"> {{experience.timePeriod}} </span>
         </b>
+        <b class="font-Droid-Serif fs-40 fw-b row title" fxHide fxShow.lt-md fxShow.md>
+          <span class="column-twothird"> {{experience.position}}</span>
+        </b>
         <div class="image-container">
           <img class="grid-image-style" mat-card-image src="{{experience.imagePath}}"/>
         </div>
+        <b class="font-Droid-Serif fs-40 fw-b row title" fxHide fxShow.lt-md fxShow.md>
+          <span class="column-twothird"> {{experience.timePeriod}} </span>
+        </b>
       </mat-card>
     </div>
   </div>
 </ng-template>
 
 <ng-template #defaultView>
-  <div [@experiencePageAnimation]=viewState>
+  <div [@experiencePageAnimation]=viewState class="pt-1">
     <div class="sections" *ngFor="let experience of experiences; let i = index">
       <mat-card class="card-style default-view-card-style mat-elevation-z4" [ngClass]="'experience' + i">
         <div class="font-Droid-Serif fs-50 fw-b row">
@@ -33,7 +39,7 @@
           <span class="columnThirds column-twothird"> {{experience.position}}</span>
           <span class="columnThirds column-threethird"> {{experience.timePeriod}} </span>
         </div>
-        <div class="body-padding-1 pt-2 font-Droid-Serif fs-50" [innerHTML]="experience.details"></div>
+        <div class="pt-2 font-Droid-Serif fs-50" [innerHTML]="experience.details"></div>
       </mat-card>
     </div>
   </div>
