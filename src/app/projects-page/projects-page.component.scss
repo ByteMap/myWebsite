@@ -2,15 +2,66 @@
   display: flex;
 }
 
-.image-container {
+.compressed-header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-container {
   float: left;
   align-self: center;
+}
+
+.display-image-container {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+}
+
+.display-image-size {
+  width: 100%;
 }
 
 .redirect {
   margin-left: auto;
 }
 
+.compressed-redirect {
+  position: absolute;
+  display: inherit;
+  width: 100%
+}
+
 .interactable {
   cursor: pointer;
+}
+
+.compressed-image-container {
+  width: 3rem;
+}
+
+.compressed-image-style {
+  display: flex;
+  width: 50%;
+}
+
+div.mat-chip-list-wrapper {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding-top: 2rem;
+
+  .mat-chip {
+    flex: 0 0 auto;
+    background-color: #EBEBEB;
+    color: #252A41;
+  }
+}
+
+.icon-position-right {
+  margin-left: auto;
+}
+
+.projects-chip-position {
+  margin-top: auto;
 }

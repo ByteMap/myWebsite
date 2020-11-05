@@ -1,17 +1,9 @@
-.custom-card-section {
-  display: flex;
-  flex-direction: column;
-}
-
-.custom-card-style {
-  height: 21rem;
-}
-
 .image-container {
   display: flex;
   height: 100%;
   align-items: center;
   justify-content: center;
+  align-self: center;
   padding-top: 1.5rem;
 }
 

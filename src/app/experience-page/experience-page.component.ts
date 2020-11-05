@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MediaObserver } from "@angular/flex-layout";
 import { ExperiencePageService } from "./experience-page.service";
 import { ContentDialogService } from "../content-dialog/content-dialog.service";
 import { cardFadeInAnimation } from "../animations";
@@ -70,6 +71,7 @@ export class ExperiencePageComponent implements OnInit {
   constructor(
     private experiencePageService: ExperiencePageService,
     private contentDialogService: ContentDialogService,
+    public mediaObserver: MediaObserver
   ) {}
 
   ngOnInit(): void {
@@ -85,15 +87,19 @@ export class ExperiencePageComponent implements OnInit {
   }
 
   openDialog(experience: Experience) {
+    const nonCompressedDialogTitle = `<b class="row">
+                                        <span class="columnThirds left-text">` + experience.company + `</span>
+                                        <span class="columnThirds center-text">` + experience.position + `</span>
+                                        <span class="columnThirds right-text">` + experience.timePeriod + `</span>
+                                      </b>`
+    const compressedDialogTitle = `<b class="font-Droid-Serif fs-50 fw-b row title" fxHide fxShow.lt-md fxShow.md>
+                                      <span class="center-text">` + experience.company + `</span>
+                                   </b>`
     const contentDialogData: ContentDialogData = {
-      dialogTitle: `<b class="row">
-                        <span class="columnThirds column-onethird">` + experience.company + `</span>
-                        <span class="columnThirds column-twothird">` + experience.position + `</span>
-                        <span class="columnThirds column-threethird">` + experience.timePeriod + `</span>
-                    </div>`,
+      dialogTitle: this.mediaObserver.isActive('xs') ? compressedDialogTitle : nonCompressedDialogTitle,
       dialogContent: experience.details,
-      dialogHeaderStyle: 'font-Droid-Serif fs-50 fw-b',
-      dialogContentStyle: 'body-padding-1 pt-2 font-Droid-Serif fs-50'
+      dialogHeaderStyle: this.mediaObserver.isActive('xs') ? 'font-Droid-Serif fs-50 row title' : 'font-Droid-Serif fs-50',
+      dialogContentStyle: this.mediaObserver.isActive('xs') ? 'body-padding-1 pt-2 font-Droid-Serif fs-40' : 'body-padding-1 pt-2 font-Droid-Serif fs-50'
     }
     this.contentDialogService.openContentDialog(contentDialogData, "75rem");
   }

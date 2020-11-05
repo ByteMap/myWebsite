@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MediaObserver } from "@angular/flex-layout";
 import { HobbiesPageService } from './hobbies-page.service';
 import { MatDialog } from "@angular/material/dialog";
 import { ContentDialogService } from "../content-dialog/content-dialog.service";
@@ -20,22 +21,20 @@ export class HobbiesPageComponent implements OnInit {
   listView: boolean;
 
   hobbies: Array<Hobby> = [
-    { title:   `<div class="font-Droid-Serif fs-50 fw-b"> Anime & Manga </div>`,
-      content: `<div class="font-Droid-Serif fs-50">
-                  <div>
+    { title:   'Anime & Manga',
+      content: `<div>
                   I've loved watching Animes and reading Mangas ever since I was in middle school. For me,
                   these two hobbies were not only a form of entertainment, but also a way for me to forget
                   about my problems for a short amount of time. They have ultimately acted as my best coping
                   mechanism for stress and anxiety, which allowed me to reset myself and perform even better
                   on things such as work and school.
-                  </div>
                   <div class="pt-2">
                     Some of my favorite Animes and Mangas are: <b>Re:Zero, Steins;Gate, and Gundam 00</b>
                   </div>
                 </div>`,
       imagePath: '../assets/images/hobbies-page-images/anime-image.png' },
-    { title:   `<div class="font-Droid-Serif fs-50 fw-b"> Games </div>`,
-      content: `<div class="font-Droid-Serif fs-50">
+    { title:   'Games',
+      content: `<div>
                   Programming is my job as well as my hobby. During my weekends and holidays, I would try to at least
                   progress a little bit with my projects and discover new frameworks and libraries to use. Most of my
                   projects are centered around visualizing data and aiding users such as myself. For example, LinkMarker
@@ -44,8 +43,8 @@ export class HobbiesPageComponent implements OnInit {
                   All in all, building new things gives me a sense of satisfaction, which I really love.
                 </div>`,
       imagePath: '../assets/images/hobbies-page-images/game-image.png' },
-    { title:   `<div class="font-Droid-Serif fs-50 fw-b"> Investing </div>`,
-      content: `<div class="font-Droid-Serif fs-50">
+    { title:   'Investing',
+      content: `<div>
                   Programming is my job as well as my hobby. During my weekends and holidays, I would try to at least
                   progress a little bit with my projects and discover new frameworks and libraries to use. Most of my
                   projects are centered around visualizing data and aiding users such as myself. For example, LinkMarker
@@ -54,8 +53,8 @@ export class HobbiesPageComponent implements OnInit {
                   All in all, building new things gives me a sense of satisfaction, which I really love.
                 </div>`,
       imagePath: '../assets/images/hobbies-page-images/investing-image.png' },
-    { title:   `<div class="font-Droid-Serif fs-50 fw-b"> Programming </div>`,
-      content: `<div class="font-Droid-Serif fs-50">
+    { title:   'Programming',
+      content: `<div>
                   Programming is my job as well as my hobby. During my weekends and holidays, I would try to at least
                   progress a little bit with my projects and discover new frameworks and libraries to use. Most of my
                   projects are centered around visualizing data and aiding users such as myself. For example, LinkMarker
@@ -64,15 +63,13 @@ export class HobbiesPageComponent implements OnInit {
                   All in all, building new things gives me a sense of satisfaction, which I really love.
                 </div>`,
       imagePath: '../assets/images/hobbies-page-images/programming-image.png' },
-    { title:   `<div class="font-Droid-Serif fs-50 fw-b"> Music </div>`,
-      content: `<div class="font-Droid-Serif fs-50">
-                  <div>
+    { title:   'Music',
+      content: `<div>
                   I've loved watching Animes and reading Mangas ever since I was in middle school. For me,
                   these two hobbies were not only a form of entertainment, but also a way for me to forget
                   about my problems for a short amount of time. They have ultimately acted as my best coping
                   mechanism for stress and anxiety, which allowed me to reset myself and perform even better
                   on things such as work and school.
-                  </div>
                   <div class="pt-2">
                     Some of my favorite Animes and Mangas are: <b>Re:Zero, Steins;Gate, and Gundam 00</b>
                   </div>
@@ -83,7 +80,8 @@ export class HobbiesPageComponent implements OnInit {
   constructor(
     private hobbiesPageService: HobbiesPageService,
     private dialog: MatDialog,
-    private contentDialogService: ContentDialogService
+    private contentDialogService: ContentDialogService,
+    public mediaObserver: MediaObserver
   ) { }
 
   ngOnInit(): void {
@@ -96,7 +94,9 @@ export class HobbiesPageComponent implements OnInit {
   openDialog(hobby: Hobby) {
     const contentDialogData: ContentDialogData = {
       dialogTitle: hobby.title,
-      dialogContent: hobby.content
+      dialogContent: hobby.content,
+      dialogHeaderStyle: this.mediaObserver.isActive('xs') ? 'font-Droid-Serif fs-50 row title' : 'font-Droid-Serif fs-50',
+      dialogContentStyle: this.mediaObserver.isActive('xs') ? 'body-padding-1 pt-2 font-Droid-Serif fs-40' : 'body-padding-1 pt-2 font-Droid-Serif fs-50'
     }
     this.contentDialogService.openContentDialog(contentDialogData, "60rem");
   }

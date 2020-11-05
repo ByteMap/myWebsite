@@ -42,10 +42,16 @@ mat-card {
   align-content: center;
 }
 
-.grid-image-style {
-  position: relative;
-  left: 5rem;
+.hobbies-image-container {
   display: flex;
+  height: 100%;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.grid-image-style {
+  width: 60%;
+  margin: 0;
 }
 
 .desc-container {
@@ -53,6 +59,7 @@ mat-card {
   flex-shrink: 1;
   width: 100%;
 }
+
 
 .image-align {
   margin-bottom: -.25rem !important;

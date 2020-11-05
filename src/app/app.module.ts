@@ -1,13 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import {FlexLayoutModule, MediaObserver} from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomePageComponent } from './home-page/home-page.component';
+import { HomePageComponent } from "./home-page/home-page.component";
 import { MatListModule } from '@angular/material/list';
 import { HobbiesPageComponent } from './hobbies-page/hobbies-page.component';
 import { HobbiesPageService } from './hobbies-page/hobbies-page.service';
@@ -25,7 +25,9 @@ import { PageHeaderComponent } from "./page-header/page-header.component";
 import { ExperiencePageService } from "./experience-page/experience-page.service";
 import { ProjectsPageComponent } from "./projects-page/projects-page.component";
 import { ProjectsPageService } from "./projects-page/projects-page.service";
-import {MatTooltipModule} from "@angular/material/tooltip";
+import { MatTooltipModule } from "@angular/material/tooltip";
+import { MatChipsModule } from "@angular/material/chips";
+import {first} from "rxjs/operators";
 
 @NgModule({
   declarations: [
@@ -54,12 +56,25 @@ import {MatTooltipModule} from "@angular/material/tooltip";
         MatCardModule,
         MatGridListModule,
         MatDialogModule,
-        MatTooltipModule
+        MatTooltipModule,
+        MatChipsModule
     ],
   providers: [
     HobbiesPageService,
     ExperiencePageService,
-    ProjectsPageService
+    ProjectsPageService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (media: MediaObserver) => {
+        return () => {
+          return media.asObservable()
+            .pipe(first())
+            .toPromise();
+        };
+      },
+      multi: true,
+      deps: [MediaObserver]
+    }
   ],
   bootstrap: [AppComponent]
 })

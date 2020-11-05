@@ -8,7 +8,7 @@ export class HobbiesPageService {
   currentView$: Observable<boolean>;
 
   constructor() {
-    this.listViewState = JSON.parse(localStorage.getItem('hobbiesPageIsListView'));
+    this.listViewState = JSON.parse(localStorage.getItem('hobbiesPageIsListView')) || true;;
     this.listView = new BehaviorSubject<boolean>(this.listViewState);
     this.currentView$ = this.listView.asObservable();
   }

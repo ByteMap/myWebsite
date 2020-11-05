@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { MediaObserver } from "@angular/flex-layout";
 import { faHome, faList, faTh, faSquare } from "@fortawesome/free-solid-svg-icons";
-import { pulseAnimation } from "../animations";
 
 @Component({
   selector: 'page-header',
@@ -18,7 +18,7 @@ export class PageHeaderComponent implements OnInit {
   gridIcon = faTh;
   squareIcon = faSquare;
 
-  constructor() {}
+  constructor(public mediaObserver: MediaObserver) {}
 
   ngOnInit() {}
 

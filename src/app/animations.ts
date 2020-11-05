@@ -1,4 +1,4 @@
-import { trigger, animate, transition, style, query, group, animation, keyframes } from '@angular/animations';
+import {trigger, animate, transition, style, query, group, animation, keyframes, state} from '@angular/animations';
 
 export const homePageAnimation = trigger('routeAnimations', [
 ]);
@@ -74,6 +74,12 @@ export const cardFadeInAnimation = trigger('experiencePageAnimation', [
       ],
       {optional: true}),
   ])
+]);
+
+export const homeHeaderAnimation = trigger('homeHeaderAnimation',[
+  state('visible', style({ opacity: 1, transform: 'translateY(0)' })),
+  state('hidden', style( { opacity: 0, transform: 'translateY(-100%)' })),
+  transition('* => *', animate('300ms ease-in'))
 ]);
 
 export const pulseAnimation = animation([

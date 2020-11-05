@@ -1,13 +1,54 @@
 <div class="home-container">
-  <section class="homePage-sections font-Arial-Rounded intro-container">
-    <div class="intro-container-left">
-      <div>Hey, nice to meet you!</div>
+  <ng-container *ngIf="mediaObserver.isActive('lt-md') then uncompressedHeader else uncompressedHeader" (mouseover)="toggleHeaderVisibility()"></ng-container>
+  <section class="image-box">
+    <ng-container *ngIf="mediaObserver.isActive('lt-lg') then compressedIntro else uncompressedIntro"></ng-container>
+  </section>
+  <ng-container *ngIf="mediaObserver.isActive('lt-md') then compressedAbout else uncompressedAbout"></ng-container>
+</div>
+
+<ng-template #uncompressedHeader>
+  <div [@homeHeaderAnimation]="headerIsVisible" id="header" class="home-header font-Droid-Serif fs-60">
+    <div class="row w-100">
+      <div class="header-icon-element fs-80" (click)="executeMethod(element.elementAction)" *ngFor="let element of headerElements[0]">
+        <fa-icon [icon]="element.elementIcon"></fa-icon>
+      </div>
+    </div>
+    <div class="header-links-container w-100">
+      <div class="text-button-element border-animation mr-1 ml-1" (click)="executeMethod(element.elementAction)" *ngFor="let element of headerElements[1]">
+        {{element.elementName}}
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #uncompressedIntro>
+  <section class="homePage-sections font-Arial-Rounded intro-container flex-column">
+    <div class="uncompressed-intro-container">
+      <div class="intro-subcontainer">
+        <div>Hi, nice to meet you!</div>
+        <div>I'm <span class="white-text fw-b"> Andy Chen</span>. </div>
+      </div>
+      <div class="vertical-divider"></div>
+      <div class="intro-subcontainer"> Software Engineer </div>
+    </div>
+    <div class="font-Droid-Serif fs-90 intro-button text-button-element border-animation" (click)="scrollToAbout()"> About Me </div>
+  </section>
+</ng-template>
+
+<ng-template #compressedIntro>
+  <section class="homePage-sections font-Arial-Rounded sections-compressed fs-60">
+    <div class="center-text">
+      <div>Hi, nice to meet you!</div>
       <div>I'm <span class="name fw-b"> Andy Chen</span>. </div>
     </div>
-    <div class="vertical-divider"></div>
-    <div class="intro-container-right"> Software Engineer</div>
+    <hr class="intro-compressed-divider">
+    <div class="center-text"> Software Engineer</div>
+    <div class="font-Droid-Serif fs-60 intro-button text-button-element border-animation" (click)="scrollToAbout()"> About Me </div>
   </section>
-  <section class="homePage-sections font-Arial-Rounded">
+</ng-template>
+
+<ng-template #uncompressedAbout>
+  <section #uncompressedAboutSection id="uncompressedAbout" class="font-Arial-Rounded" [class]="mediaObserver.isActive('gt-md') ? 'homePage-sections' : 'compressed-homePage-sections'">
     <div class="desc-container">
       <div class="fs-80 fw-b"> About Me </div>
       <hr class="horizontal-divider">
@@ -28,30 +69,64 @@
         </div>
       </div>
     </div>
-    <div class="custom-image-container pl-2">
+    <div class="home-image-container pl-2">
       <img class="profile-image" src="/assets/images/home-page-images/profile-image.png" alt="Avatar">
     </div>
   </section>
-  <section class="card-section vh-100 custom" fxLayout="row wrap">
-    <mat-card class="card-style custom-card-style" fxFlex="48%" fxFlex.xs="100%" fxFlex.sm="100%" [routerLink]="'/my-experience'">
-      <mat-card-title>
-        My Experience
-      </mat-card-title>
-    </mat-card>
-    <mat-card class="card-style custom-card-style" fxFlex="48%" fxFlex.xs="100%" fxFlex.sm="100%">
-      <mat-card-title>
-        My Projects
-      </mat-card-title>
-    </mat-card>
-    <mat-card class="card-style custom-card-style" fxFlex="48%" fxFlex.xs="100%" fxFlex.sm="100%">
-      <mat-card-title>
-        My Education
-      </mat-card-title>
-    </mat-card>
-    <mat-card class="card-style custom-card-style" fxFlex="48%" fxFlex.xs="100%" fxFlex.sm="100%" [routerLink]="'/my-hobbies'">
-      <mat-card-title>
-        My Hobbies
-      </mat-card-title>
-    </mat-card>
+</ng-template>
+
+<ng-template #compressedAbout>
+  <section #compressedAboutSection id="compressedAbout" class="compressed-homePage-sections font-Arial-Rounded sections-compressed compressedAbout">
+    <div class="desc-container">
+      <div class="fs-60 fw-b center-text"> About Me </div>
+      <hr class="horizontal-divider">
+      <div class="font-Droid-Serif fs-40">
+        <div> Hi there! I'm Andy, a Junior Software Engineer. </div>
+        <div class="pt-1">
+          I graduated from the University of California, Santa Cruz with a B.S. in Computer Science during the summer of 2020.
+        </div>
+        <div class="pt-1">
+          I really enjoy programming as it gives me a great sense of satisfaction every time I get something to work, and understand why it works.
+          Programming to me is like working on a massive jigsaw puzzle with each piece being something that I will have to learn whether they be new
+          technologies or methodologies. By piecing everything together, something magnificent can then be created.
+        </div>
+        <div class="pt-1">
+          For the past year, I had the honor of working at the UCSC Genomics Institute as a Full Stack Web Developer for the Dockstore project.
+          Not only was I able to learn more about the industry that I was headed into, but I was also able to learn about new coding practices, methodologies,
+          and technologies. My time at the Genomics Institute had ultimately given me more experienced than I had hoped for in order to start off my career.
+        </div>
+      </div>
+    </div>
+    <div class="home-image-container mt-1" fxHide fxShow.gt-sm fxShow.sm>
+      <img class="profile-image" src="/assets/images/home-page-images/profile-image.png" alt="Avatar">
+    </div>
+    <div class="mt-1" fxHide fxShow.lt-sm>
+      <img class="profile-image" src="/assets/images/home-page-images/profile-image.png" alt="Avatar">
+    </div>
   </section>
-</div>
+</ng-template>
+
+<!--<ng-template>-->
+<!--  <section class="card-section vh-100 custom" fxLayout="row wrap">-->
+<!--    <mat-card class="card-style" fxFlex="48%" fxFlex.xs="100%" fxFlex.sm="100%" [routerLink]="'/my-experience'">-->
+<!--      <mat-card-title>-->
+<!--        My Experience-->
+<!--      </mat-card-title>-->
+<!--    </mat-card>-->
+<!--    <mat-card class="card-style" fxFlex="48%" fxFlex.xs="100%" fxFlex.sm="100%">-->
+<!--      <mat-card-title>-->
+<!--        My Projects-->
+<!--      </mat-card-title>-->
+<!--    </mat-card>-->
+<!--    <mat-card class="card-style" fxFlex="48%" fxFlex.xs="100%" fxFlex.sm="100%">-->
+<!--      <mat-card-title>-->
+<!--        My Education-->
+<!--      </mat-card-title>-->
+<!--    </mat-card>-->
+<!--    <mat-card class="card-style" fxFlex="48%" fxFlex.xs="100%" fxFlex.sm="100%" [routerLink]="'/my-hobbies'">-->
+<!--      <mat-card-title>-->
+<!--        My Hobbies-->
+<!--      </mat-card-title>-->
+<!--    </mat-card>-->
+<!--  </section>-->
+<!--</ng-template>-->

@@ -7,7 +7,7 @@ export class ExperiencePageService {
   listView$: BehaviorSubject<boolean>;
 
   constructor() {
-    this.listViewState = JSON.parse(localStorage.getItem('experiencePageIsListView'));
+    this.listViewState = JSON.parse(localStorage.getItem('experiencePageIsListView')) || true;;
     this.listView$ = new BehaviorSubject<boolean>(this.listViewState);
   }
 
