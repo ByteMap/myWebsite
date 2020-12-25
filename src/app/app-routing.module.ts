@@ -9,7 +9,8 @@ import { ProjectsPageComponent } from "./projects-page/projects-page.component";
 const routes: Routes = [
   {
     path: 'home',
-    component: HomePageComponent
+    component: HomePageComponent,
+    data: { animation: 'homePage' }
   },
   {
     path: 'my-hobbies',

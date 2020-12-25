@@ -6,13 +6,13 @@
 <ng-container *ngIf="listView === false || mediaObserver.isActive('lt-md') then gridList else defaultView"></ng-container>
 
 <ng-template #gridList>
-  <div class="card-section" [class]="mediaObserver.isActive('xs') ? 'compressed-card-view-style' : 'grid-view-card-style pt-3'"
+  <div class="flex-center" [class]="mediaObserver.isActive('xs') ? 'compressed-card-view-style' : 'grid-view-card-style pt-3'"
        fxLayout="row wrap" fxLayoutGap.gt-xs="4rem grid">
     <div [class]="mediaObserver.isActive('xs') ? 'pt-custom' : ''" fxFlex="33%" fxFlex.lt-md="100%" fxFlex.md="50%" *ngFor="let project of projects">
       <mat-card class="card-style flex-column card-style-pointer custom-card-height mat-elevation-z4">
         <div class="header font-Droid-Serif fs-80 fw-b" fxHide fxShow.gt-xs>
           <div class="logo-container maxw-10">
-            <img class="default-image-style" src="{{project.logo}}">
+            <img class="row-100" src="{{project.logo}}">
           </div>
           <div class="title pl-1"> {{project.title}} </div>
           <div class="redirect">
@@ -23,7 +23,7 @@
 
         <div class="compressed-header font-Droid-Serif fs-80 fw-b" fxHide fxShow.xs>
           <div class="logo-container compressed-image-container">
-            <img class="default-image-style" src="{{project.logo}}">
+            <img class="row-100" src="{{project.logo}}">
           </div>
           <div class="title fs-40 center-text"> {{project.title}} </div>
           <div class="compressed-redirect fs-40">
@@ -52,7 +52,7 @@
     <mat-card class="card-style default-view-card-style mat-elevation-z4">
       <div class="header font-Droid-Serif fs-80 fw-b">
         <div class="logo-container maxw-10">
-          <img class="default-image-style" src="{{project.logo}}">
+          <img class="row-100" src="{{project.logo}}">
         </div>
         <div class="title pl-1"> {{project.title}} </div>
         <div class="redirect">

@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .home-container {
   box-sizing: border-box;
   overflow: auto;
@@ -13,13 +17,12 @@
   padding-left: 5%;
   padding-right: 5%;
   box-shadow: 0 0.5rem 0.5rem rgba(0,0,0,0.1);
+  //background: rgba(0,0,0,0.15);
+  z-index: 2;
+}
 
-  //opacity: 0;
-  //transition: top 0.2s ease-in;
-  //
-  //&:hover {
-  //  opacity: 1;
-  //}
+.home-header-color {
+  background-color: #252A41;
 }
 
 .header-icon-element {
@@ -44,6 +47,7 @@
 
 .text-button-element {
   position: relative;
+  max-width: fit-content;
   background: none;
   border: 0;
   box-sizing: border-box;
@@ -70,13 +74,20 @@
 .compressed-homePage-sections {
   display: flex;
   align-items: center;
-  padding: 30% 10%;
+  justify-content: center;
+  min-height: 100vh;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
-.uncompressed-intro-container {
-  display: flex;
-  width: 100%;
-  justify-content: center;
+.compressed-sections-padding {
+  padding: 20% 10%;
+}
+
+.banner-section {
+  height: auto;
+  min-height: auto;
+  padding: 5% 10%;
 }
 
 .compressed-intro-section {
@@ -88,7 +99,7 @@
 }
 
 .intro-button {
-  margin-top: 5rem;
+  margin-top: 2rem;
   color: #EBEBEB;
   text-align: center;
   box-shadow: inset 0 0 0 .1rem #EBEBEB;
@@ -116,20 +127,8 @@
   width: 100%;
 }
 
-.intro-subcontainer {
-  width: 100%;
-  align-self: center;
-  text-align: center;
-}
-
-.intro-container-right {
-  width: 100%;
-  align-self: center;
-  text-align: center;
-}
-
 .vertical-divider {
-  border: 0.05rem solid #EBEBEB;
+  border: 0.01rem solid #B7B8F5;
   height: 12rem;
   margin-left: 1rem;
   margin-right: 1rem;
@@ -200,14 +199,89 @@
 }
 
 .image-box {
-  background: url('../../assets/images/home-page-images/intro-image.jpeg') no-repeat center center fixed;
+  background: var(--url) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
+  box-shadow: inset 0 0 0 100vw rgba(0,0,0,0.35);
+}
 
-  /* Here's the trick */
-  box-shadow: inset 0 0 0 100vw rgba(0,0,0,0.5);
+.skills-container {
+  display: flex;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.skill-name-container {
+  display: flex;
+  flex: 0 0 auto;
+  margin: 0.5rem;
+  width: 15rem;
+  height: 3rem;
+  background-color: #C9CAF8;
+  color: #252A41;
+  border-radius: .5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.skill-description-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.skill-desc-title {
+  text-align: center;
+}
+
+.skill-desc-desc {
+  margin-top: 2rem;
+  margin-right: 5rem;
+  margin-left: 5rem;
+}
+
+.redirect-card {
+  display: flex;
+  background-color: transparent;
+  box-shadow: inset 0 0 0 100vw rgba(0,0,0,0.4);
+  border: .1rem solid #EBEBEB;
+  width: 100%;
+  height: 12rem;
+}
+
+.more-info-title {
+  position: absolute;
+  opacity: 1;
+  transition: opacity ease .75s;
+}
+
+.more-info-icon {
+  top: 0;
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  transition: all ease .75s;
+}
+
+.redirect-card:hover .more-info-title {
+  visibility: hidden;
+  transform: translateX(100%);
+  opacity: 0;
+  transition: all ease .75s;
+}
+
+.redirect-card:hover .more-info-icon {
+  visibility: visible;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 1;
+  transition: all ease .75s;
+}
+
+.conclusion {
+  margin-bottom: 5rem;
 }

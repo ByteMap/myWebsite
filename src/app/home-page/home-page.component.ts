@@ -1,21 +1,20 @@
-import {Component, ElementRef, HostBinding, HostListener, OnInit, ViewChild} from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { MediaObserver } from "@angular/flex-layout";
 import { Router } from "@angular/router";
-import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
-import { fromEvent } from "rxjs";
-import { distinctUntilChanged, filter, map, pairwise, share, tap, throttleTime } from "rxjs/operators";
-import { homeHeaderAnimation } from "../animations";
-
-export interface ElementAction {
-  action: string,
-  parameter ?: string
-}
-
-export interface PageElements {
-  elementName?: string,
-  elementIcon?: any,
-  elementAction: ElementAction
-}
+import { fromEvent, Observable } from "rxjs";
+import { distinctUntilChanged, filter, map, pairwise, share, throttleTime } from "rxjs/operators";
+import {
+  homeAboutAnimation,
+  homeHeaderAnimation,
+  homeIntroAnimation,
+  homeTimelineHeaderAnimation,
+  homeTimelineAnimation,
+  homeSkillsAnimation,
+  homeMoreInfoAnimation,
+  homeConclusionAnimation
+} from "../animations";
+import { HomeModel, headerElements, timeLineElements, skillElements, moreInfoElements } from "../data.model";
+import { ProgressRingComponent } from "../progress-ring/progress-ring.component";
 
 enum Direction {
   Up = 'Up',
@@ -26,36 +25,30 @@ enum Direction {
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
-  animations: [ homeHeaderAnimation ]
+  animations: [
+    homeHeaderAnimation,
+    homeIntroAnimation,
+    homeAboutAnimation,
+    homeTimelineHeaderAnimation,
+    homeTimelineAnimation,
+    homeSkillsAnimation,
+    homeMoreInfoAnimation,
+    homeConclusionAnimation
+  ]
 })
 export class HomePageComponent implements OnInit {
   @ViewChild('uncompressedAboutSection') uncompressedAboutSection: ElementRef;
   @ViewChild('compressedAboutSection') compressedAboutSection: ElementRef;
+  @ViewChildren('progressCircle') progressCircles: QueryList<ProgressRingComponent>;
+  skillDescription$: Observable<HomeModel.SkillElement>;
 
   headerIsVisible: string;
   headerIsVisibleSavedState: string;
 
-  gitHubIcon = faGithub;
-  linkedInIcon = faLinkedin;
-
-  headerElements: Array<Array<PageElements>> = [
-    [
-      { elementIcon: this.gitHubIcon,
-        elementAction: {action: 'newTab', parameter: 'https://github.com/ByteMap'} },
-      { elementIcon: this.linkedInIcon,
-        elementAction: {action: 'newTab', parameter: 'https://www.linkedin.com/in/andy-chen-929ba6a2/'} }
-    ],
-    [
-      { elementName: 'Hobbies',
-        elementAction: { action: 'redirect', parameter: 'my-hobbies' } },
-      { elementName: 'Experiences',
-        elementAction: { action: 'redirect', parameter: 'my-experience' }  },
-      { elementName: 'Projects',
-        elementAction: { action: 'redirect', parameter: 'my-projects' }  },
-      { elementName: 'Resume',
-        elementAction: { action: 'redirect' }  }
-    ]
-  ];
+  headerElements: Array<Array<HomeModel.PageElement>> = headerElements;
+  timeLineElements: Array<HomeModel.TimeLineElement> = timeLineElements;
+  skillElements: Array<HomeModel.SkillElement> = skillElements;
+  moreInfoElements: Array<HomeModel.MoreInfoElement> = moreInfoElements;
 
   constructor(
     private router: Router,
@@ -63,9 +56,39 @@ export class HomePageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.skillDescription$ = new Observable<HomeModel.SkillElement>((observer) => observer.next(this.skillElements[0]));
   }
 
   ngAfterViewInit() {
+    this.displayHeaderAnimation();
+  }
+
+  executeMethod(action: HomeModel.ElementAction): void {
+    switch(action.action) {
+      case 'redirect': {
+        this.router.navigate([action.parameter]);
+        break;
+      }
+      case 'newTab': {
+        window.open(action.parameter, '_blank');
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+  }
+
+  scrollToAbout(): void {
+    let section = this.mediaObserver.isActive('lt-md') ? this.compressedAboutSection : this.uncompressedAboutSection;
+    section.nativeElement.scrollIntoView({behavior: "smooth", block: "start"});
+  }
+
+  displaySkillInformation(skill: HomeModel.SkillElement): void {
+    this.skillDescription$ = new Observable<HomeModel.SkillElement>((observer) => observer.next(skill));
+  }
+
+  displayHeaderAnimation(): void {
     const scrollPosition$ = fromEvent(window, "scroll").pipe(
       throttleTime(10),
       map(() => window.pageYOffset),
@@ -83,8 +106,14 @@ export class HomePageComponent implements OnInit {
       filter(direction => direction === Direction.Down)
     );
 
-    scrollUp$.subscribe(() => { this.headerIsVisible = 'visible', this.headerIsVisibleSavedState = 'visible' });
-    scrollDown$.subscribe(() => { this.headerIsVisible = 'hidden', this.headerIsVisibleSavedState = 'hidden' });
+    scrollUp$.subscribe(() => {
+      this.headerIsVisible = 'visible',
+      this.headerIsVisibleSavedState = 'visible'
+    });
+    scrollDown$.subscribe(() => {
+      this.headerIsVisible = 'hidden',
+      this.headerIsVisibleSavedState = 'hidden'
+    });
 
     const mousePosition$ = fromEvent<MouseEvent>(window, "mousemove").pipe(
       throttleTime(10),
@@ -96,29 +125,7 @@ export class HomePageComponent implements OnInit {
     );
   }
 
-  executeMethod(action: ElementAction) {
-    switch(action.action) {
-      case 'redirect': {
-        this.router.navigate([action.parameter]);
-        break;
-      }
-      case 'newTab': {
-        window.open(action.parameter, '_blank');
-        break;
-      }
-      default: {
-        break;
-      }
-    }
+  public handleDone( event: any ) : void {
+    console.log(event)
   }
-
-  toggleHeaderVisibility() {
-    this.headerIsVisible = 'visible';
-  }
-
-  scrollToAbout() {
-    let section = this.mediaObserver.isActive('lt-md') ? this.compressedAboutSection : this.uncompressedAboutSection;
-    section.nativeElement.scrollIntoView({behavior: "smooth", block: "center"});
-  }
-
 }

@@ -8,7 +8,7 @@
 </ng-container>
 
 <ng-template #gridList>
-  <div [@experiencePageAnimation]="viewState" class="card-section" [class]="mediaObserver.isActive('xs') ? 'compressed-card-view-style' : 'grid-view-card-style pt-3'"
+  <div [@experiencePageAnimation]="viewState" class="flex-center" [class]="mediaObserver.isActive('xs') ? 'compressed-card-view-style' : 'grid-view-card-style pt-3'"
        fxLayout="row wrap" fxLayoutGap.gt-xs="4rem grid">
     <div [class]="mediaObserver.isActive('xs') ? 'pt-custom' : ''" fxFlex="50%" fxFlex.xs="100%" *ngFor="let experience of experiences; let i = index">
       <mat-card class="card-style flex-column custom-card-height card-style-pointer mat-elevation-z4 pt-4"

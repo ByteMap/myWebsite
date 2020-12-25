@@ -1,0 +1,42 @@
+<ng-container *ngIf="mediaObserver.isActive('lt-md') then compressedTimeline else uncompressedTimeline">
+</ng-container>
+
+<ng-template #uncompressedTimeline>
+  <div class="timeline-container font-Droid-Serif fs-60" *ngFor="let timeLineElement of data; let i = index" [ngClass]="'timeline'+i">
+    <mat-card class="content font-Droid-Serif fs-50" *ngIf="i % 2 !== 0" [ngClass]="'timeLineElementLeft'+i">
+      <mat-card-header class="fs-60 fw-b flex-column">
+        {{timeLineElement.title}}
+        <div class="fs-40"> {{timeLineElement.location}} </div>
+      </mat-card-header>
+      <mat-card-content class="fs-40 mt-1"> {{timeLineElement.content}} </mat-card-content>
+    </mat-card>
+    <div class="date-left fw-b" *ngIf="i % 2 === 0" [ngClass]="'timeLineElementLeft'+i"> {{timeLineElement.date}} </div>
+    <div class="icon-container">
+      <fa-icon class="icon" [icon]="timeLineElement.icon" [ngClass]="'timeLineElementIcon'+i"></fa-icon>
+    </div>
+    <mat-card class="content font-Droid-Serif fs-50" *ngIf="i % 2 === 0" [ngClass]="'timeLineElementRight'+i">
+      <mat-card-header class="fs-60 fw-b flex-column">
+        {{timeLineElement.title}}
+        <div class="fs-40"> {{timeLineElement.location}} </div>
+      </mat-card-header>
+      <mat-card-content class="fs-40 mt-1"> {{timeLineElement.content}} </mat-card-content>
+    </mat-card>
+    <div class="date-right fw-b" *ngIf="i % 2 !== 0" [ngClass]="'timeLineElementRight'+i"> {{timeLineElement.date}} </div>
+  </div>
+</ng-template>
+
+<ng-template #compressedTimeline>
+  <div class="timeline-container-compressed font-Droid-Serif fs-60" *ngFor="let timeLineElement of data; let i = index">
+    <div class="icon-container-compressed">
+      <fa-icon class="icon fs-50" [icon]="timeLineElement.icon"></fa-icon>
+    </div>
+    <mat-card class="content-compressed font-Droid-Serif fs-50">
+          <mat-card-header class="content-header fs-60 fw-b flex-column">
+            {{timeLineElement.title}}
+            <div class="content-date fs-40"> {{timeLineElement.date}} </div>
+            <div class="fs-40"> {{timeLineElement.location}} </div>
+          </mat-card-header>
+          <mat-card-content class="fs-40 mt-1"> {{timeLineElement.content}} </mat-card-content>
+    </mat-card>
+  </div>
+</ng-template>

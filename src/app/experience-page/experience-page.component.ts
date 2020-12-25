@@ -103,4 +103,9 @@ export class ExperiencePageComponent implements OnInit {
     }
     this.contentDialogService.openContentDialog(contentDialogData, "75rem");
   }
+
+  // Debugging method for Angular animations
+  public handleDone( event: any ) : void {
+    console.log(event)
+  }
 }

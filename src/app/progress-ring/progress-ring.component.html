@@ -1,0 +1,39 @@
+<div class="progress-rings-container">
+  <div class="progress-ring-container" *ngFor="let skillData of progressRingData">
+    <div class="progress-circle">
+      <svg height="150" width="150">
+        <g transform="translate(75, 75)">
+          <circle cx="0" cy="0" r="70"></circle>
+          <text text-anchor="middle" dy=".3em">{{skillData.rating}}%</text>
+        </g>
+      </svg>
+    </div>
+    <span class="font-Droid-Serif fs-80">{{skillData.label}}</span>
+  </div>
+</div>
+
+<!--<div>-->
+<!--  <div class="progress-ring-container">-->
+<!--    <div class="progress-circle">-->
+<!--      <svg height="150" width="150">-->
+<!--        <g transform="translate(75, 75)">-->
+<!--          <circle id="{{progressRingData[0].proficiencyLabel}}" cx="0" cy="0" r="70"></circle>-->
+<!--          <text text-anchor="middle" dy=".3em">{{progressRingData[0].proficiencyRating}}%</text>-->
+<!--        </g>-->
+<!--      </svg>-->
+<!--    </div>-->
+<!--    <span class="font-Droid-Serif fs-80">{{progressRingData[0].proficiencyLabel}}</span>-->
+<!--  </div>-->
+<!--  <div class="progress-ring-container">-->
+<!--    <div class="progress-circle">-->
+<!--      <svg height="150" width="150">-->
+<!--        <g transform="translate(75, 75)">-->
+<!--          <circle id="{{progressRingData[1].proficiencyLabel}}" cx="0" cy="0" r="70"></circle>-->
+<!--          <text text-anchor="middle" dy=".3em">{{progressRingData[1].proficiencyRating}}%</text>-->
+<!--        </g>-->
+<!--      </svg>-->
+<!--    </div>-->
+<!--    <span class="font-Droid-Serif fs-80">{{progressRingData[1].proficiencyLabel}}</span>-->
+<!--  </div>-->
+<!--</div>-->
+

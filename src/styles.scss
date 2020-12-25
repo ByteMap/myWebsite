@@ -83,10 +83,20 @@ mat-dialog-container {
   align-self: center;
 }
 
-.card-section {
+.flex-center {
   justify-content: center;
   align-content: center;
   align-items: center;
+}
+
+.centerX {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.centerY {
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .card-style {
@@ -109,7 +119,7 @@ mat-dialog-container {
 
 .flex-column {
   display: flex !important;
-  flex-direction: column;
+  flex-direction: column !important;
 }
 
 .image-container {
@@ -117,7 +127,7 @@ mat-dialog-container {
   align-self: flex-end;
 }
 
-.default-image-style {
+.row-100 {
   display: flex;
   width: 100%;
 }
@@ -254,6 +264,10 @@ mat-dialog-container {
 
 .pl-5 {
   padding-left: 5rem;
+}
+
+.pb-3 {
+  padding-bottom: 3rem;
 }
 
 .mt-1 {

@@ -1,0 +1,48 @@
+.progress-rings-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.progress-ring-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.progress-circle {
+  display: flex;
+  justify-content: center;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  transform: rotate(270deg);
+}
+
+circle {
+  position: absolute;
+  fill: none;
+  stroke-width: 5;
+  stroke-dasharray: 440;
+  stroke-linecap: round;
+}
+
+.progress-circle circle {
+  --initialStroke: 0;
+  --transitionDuration: 0;
+  stroke: #C9CAF8;
+  stroke-dashoffset: var(--initialStroke);
+  stroke-dasharray: var(--initialStroke);
+  transition: stroke-dashoffset var(--transitionDuration) ease;
+}
+
+text {
+  font: 2.5rem "Droid Serif", serif;
+  fill: #C9CAF8;
+  transform: rotate(-270deg);
+}
+
+.progress-circle span {
+  color: gold;
+}

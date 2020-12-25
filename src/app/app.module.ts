@@ -27,7 +27,12 @@ import { ProjectsPageComponent } from "./projects-page/projects-page.component";
 import { ProjectsPageService } from "./projects-page/projects-page.service";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatChipsModule } from "@angular/material/chips";
-import {first} from "rxjs/operators";
+import { first } from "rxjs/operators";
+import { MatExpansionModule } from "@angular/material/expansion";
+import { TimelineComponent } from "./timeline/timeline.component";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { ProgressRingComponent } from "./progress-ring/progress-ring.component";
+import { PageFooterComponent } from "./page-footer/page-footer.component";
 
 @NgModule({
   declarations: [
@@ -38,27 +43,32 @@ import {first} from "rxjs/operators";
     ExperiencePageComponent,
     ContentDialogComponent,
     PageHeaderComponent,
-    ProjectsPageComponent
+    ProjectsPageComponent,
+    TimelineComponent,
+    ProgressRingComponent,
+    PageFooterComponent
   ],
-    imports: [
-        AppRoutingModule,
-        BrowserModule,
-        BrowserAnimationsModule,
-        FormsModule,
-        FlexLayoutModule,
-        LayoutModule,
-        MatSidenavModule,
-        MatButtonModule,
-        MatListModule,
-        MatIconModule,
-        MatTabsModule,
-        FontAwesomeModule,
-        MatCardModule,
-        MatGridListModule,
-        MatDialogModule,
-        MatTooltipModule,
-        MatChipsModule
-    ],
+  imports: [
+    AppRoutingModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    FlexLayoutModule,
+    LayoutModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatListModule,
+    MatIconModule,
+    MatTabsModule,
+    FontAwesomeModule,
+    MatCardModule,
+    MatGridListModule,
+    MatDialogModule,
+    MatTooltipModule,
+    MatChipsModule,
+    MatExpansionModule,
+    MatProgressBarModule
+  ],
   providers: [
     HobbiesPageService,
     ExperiencePageService,
