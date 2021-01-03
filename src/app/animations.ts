@@ -1,7 +1,10 @@
 import { trigger, animate, transition, style, query, group, animation, keyframes, state } from '@angular/animations';
 
 export const homeIntroAnimation = trigger('homeIntroAnimation', [
-  transition(':enter', [
+  state('initial', style({ opacity: 0 })),
+  state('toggleIntroAnimation', style({ opacity: 1 })),
+  transition('* => toggleIntroAnimation', [
+    animate('0s'),
     query('.vertical-divider, .intro-left, .intro-right, .intro-button', [style({ opacity: 0 })], { optional: true }),
     query('.vertical-divider', [
         style({ transform: 'scale3d(1,0,1)' }),
@@ -19,21 +22,49 @@ export const homeIntroAnimation = trigger('homeIntroAnimation', [
         animate('1s'),
         style({ opacity: 1, transform: 'translateX(0)' })
       ]),
-      query('.intro-button', [
+    ]),
+    query('.intro-button', [
+      style({ opacity: 0, transform: 'translateY(-20%)' }),
+      animate('.9s'),
+      style({ opacity: 1, transform: 'translateY(0)' })
+    ])
+  ]),
+]);
+
+export const homeCompressedIntroAnimation = trigger('homeCompressedIntroAnimation', [
+  state('initial', style({ opacity: 0 })),
+  transition('* => toggleIntroAnimation', [
+    animate('0s'),
+    query('.intro-compressed-divider, .intro-top, .intro-bottom, .intro-button', [style({ opacity: 0 })]),
+    query('.intro-compressed-divider', [
+        style({ transform: 'scale3d(0,1,1)' }),
+        animate('0.75s'),
+      ]),
+    group([
+      query('.intro-top', [
+        style({ opacity: 0, transform: 'translateY(20%)' }),
+        animate('1s'),
+      ]),
+      query('.intro-bottom', [
         style({ opacity: 0, transform: 'translateY(-20%)' }),
         animate('1s'),
-        style({ opacity: 1, transform: 'translateY(0)' })
       ]),
+    ]),
+    query('.intro-button', [
+      style({ opacity: 0, transform: 'translateY(-20%)' }),
+      animate('1s'),
     ])
   ]),
 ]);
 
 export const homeAboutAnimation = trigger('homeAboutAnimation', [
-  transition(':enter', [
-    query('.sectionTitle, .horizontal-divider, .profile-image, .aboutSection1, .aboutSection2, .aboutSection3, .aboutSection4', [
+  state('initial', style({ opacity: 0 })),
+  transition('* => toggleAboutAnimation', [
+    animate('0s'),
+    query('.center-text, .horizontal-divider, .profile-image, .aboutSection1, .aboutSection2, .aboutSection3, .aboutSection4', [
       style({ opacity: 0 })], { optional: true }),
     group([
-      query('.sectionTitle', [
+      query('.center-text', [
         style({ opacity: 0, transform: 'translateY(-20%)' }),
         animate('.75s'),
       ]),
@@ -63,10 +94,73 @@ export const homeAboutAnimation = trigger('homeAboutAnimation', [
       animate('.65s')
     ])
   ])
+]);
+
+export const homeSidebarAnimation = trigger('homeSidebarAnimation', [
+  state('hide', style({ transform: 'translateX(110%)'})),
+  state('show', style({ transform: 'translateX(0)'})),
+  transition('* => *', animate('.25s'))
 ])
 
+export const homeCompressedAboutAnimation = trigger('homeCompressedAboutAnimation', [
+  state('initial', style({ opacity: 0 })),
+  transition('* => toggleAboutAnimation', [
+    animate('0s'),
+    query('.center-text, .horizontal-divider, .profile-image, .aboutSection1, .aboutSection2, .aboutSection3, .aboutSection4', [
+      style({ opacity: 0 })], { optional: true }),
+    group([
+      query('.center-text', [
+        style({ opacity: 0, transform: 'translateY(-20%)' }),
+        animate('.75s'),
+      ]),
+      query('.horizontal-divider', [
+        style({ transform: 'scale3d(0,1,1)' }),
+        animate('.75s'),
+      ]),
+    ]),
+    query('.aboutSection1', [
+      style({ opacity: 0, transform: 'translateY(-10%)' }),
+      animate('.65s')
+    ]),
+    query('.aboutSection2', [
+      style({ opacity: 0, transform: 'translateY(-10%)' }),
+      animate('.65s')
+    ]),
+    query('.aboutSection3', [
+      style({ opacity: 0, transform: 'translateY(-10%)' }),
+      animate('.65s')
+    ]),
+    query('.aboutSection4', [
+      style({ opacity: 0, transform: 'translateY(-10%)' }),
+      animate('.65s')
+    ]),
+    query('.profile-image', [
+      style({ opacity: 0, transform: 'translateY(-10%)' }),
+      animate('.75s')
+    ])
+  ])
+]);
+
 export const homeTimelineHeaderAnimation = trigger('homeTimelineHeaderAnimation', [
-  transition(':enter', [
+  state('initial', style({ opacity: 0 })),
+  state('toggleUncompressedTimelineAnimation', style({ opacity: 1 })),
+  state('toggleCompressedTimeLineAnimation', style({ opacity: 1 })),
+  transition('* => toggleUncompressedTimelineAnimation', [
+    animate('0s'),
+    query('.center-text, .horizontal-divider', [style({ opacity: 0 })]),
+    group([
+      query('.center-text', [
+        style({ opacity: 0, transform: 'translateY(-20%)' }),
+        animate('.75s'),
+      ]),
+      query('.horizontal-divider', [
+        style({ transform: 'scale3d(0,1,1)' }),
+        animate('.75s'),
+      ]),
+    ])
+  ]),
+  transition('* => toggleCompressedTimelineAnimation', [
+    animate('0s'),
     query('.center-text, .horizontal-divider', [style({ opacity: 0 })]),
     group([
       query('.center-text', [
@@ -79,91 +173,154 @@ export const homeTimelineHeaderAnimation = trigger('homeTimelineHeaderAnimation'
       ]),
     ])
   ])
-])
+]);
 
 export const homeTimelineAnimation = trigger('timelineAnimation', [
-  transition(':enter', [
-    query(`.timeLineElementLeft0, .timeLineElementIcon0, .timeLineElementRight0,
-                   .timeLineElementLeft1, .timeLineElementIcon1, .timeLineElementRight1,
-                   .timeLineElementLeft2, .timeLineElementIcon2, .timeLineElementRight2,
-                   .timeLineElementLeft3, .timeLineElementIcon3, .timeLineElementRight3,
-                   .timeLineElementLeft4, .timeLineElementIcon4, .timeLineElementRight4`,
+  state('initial', style({ opacity: 0 })),
+  transition('* => toggleUncompressedTimelineAnimation', [
+    animate('0s'),
+    query(`.timelineElementLeft0, .timelineElementIcon0, .timelineElementRight0,
+                   .timelineElementLeft1, .timelineElementIcon1, .timelineElementRight1,
+                   .timelineElementLeft2, .timelineElementIcon2, .timelineElementRight2,
+                   .timelineElementLeft3, .timelineElementIcon3, .timelineElementRight3,
+                   .timelineElementLeft4, .timelineElementIcon4, .timelineElementRight4`,
       style({ opacity: 0})),
     group([
-      query('.timeLineElementLeft0', [
+      query('.timelineElementLeft0', [
         style({ opacity: 0, transform: 'translateX(5%)' }),
         animate('.5s'),
       ]),
-      query('.timeLineElementIcon0', [
+      query('.timelineElementIcon0', [
         style({ opacity: 0 }),
         animate('.5s'),
       ]),
-      query('.timeLineElementRight0', [
+      query('.timelineElementRight0', [
         style({ opacity: 0, transform: 'translateX(-5%)' }),
         animate('.5s'),
       ]),
     ]),
     group([
-      query('.timeLineElementLeft1', [
+      query('.timelineElementLeft1', [
         style({ opacity: 0, transform: 'translateX(5%)' }),
         animate('.5s'),
       ]),
-      query('.timeLineElementIcon1', [
+      query('.timelineElementIcon1', [
         style({ opacity: 0 }),
         animate('.5s'),
       ]),
-      query('.timeLineElementRight1', [
+      query('.timelineElementRight1', [
         style({ opacity: 0, transform: 'translateX(-5%)' }),
         animate('.5s'),
       ]),
     ]),
     group([
-      query('.timeLineElementLeft2', [
+      query('.timelineElementLeft2', [
         style({ opacity: 0, transform: 'translateX(5%)' }),
         animate('.5s'),
       ]),
-      query('.timeLineElementIcon2', [
+      query('.timelineElementIcon2', [
         style({ opacity: 0 }),
         animate('.5s'),
       ]),
-      query('.timeLineElementRight2', [
+      query('.timelineElementRight2', [
         style({ opacity: 0, transform: 'translateX(-5%)' }),
         animate('.5s'),
       ]),
     ]),
     group([
-      query('.timeLineElementLeft3', [
+      query('.timelineElementLeft3', [
         style({ opacity: 0, transform: 'translateX(5%)' }),
         animate('.5s'),
       ]),
-      query('.timeLineElementIcon3', [
+      query('.timelineElementIcon3', [
         style({ opacity: 0 }),
         animate('.5s'),
       ]),
-      query('.timeLineElementRight3', [
+      query('.timelineElementRight3', [
         style({ opacity: 0, transform: 'translateX(-5%)' }),
         animate('.5s'),
       ]),
     ]),
     group([
-      query('.timeLineElementLeft4', [
+      query('.timelineElementLeft4', [
         style({ opacity: 0, transform: 'translateX(5%)' }),
         animate('.5s'),
       ]),
-      query('.timeLineElementIcon4', [
+      query('.timelineElementIcon4', [
         style({ opacity: 0 }),
         animate('.5s'),
       ]),
-      query('.timeLineElementRight4', [
+      query('.timelineElementRight4', [
         style({ opacity: 0, transform: 'translateX(-5%)' }),
         animate('.5s'),
       ]),
     ])
-  ])
+  ]),
+  transition('* => toggleCompressedTimelineAnimation', [
+    animate('0s'),
+    query(`.timelineElementIcon0, .timelineElementDetails0,
+                   .timelineElementIcon1, .timelineElementDetails1,
+                   .timelineElementIcon2, .timelineElementDetails2,
+                   .timelineElementIcon3, .timelineElementDetails3,
+                   .timelineElementIcon4, .timelineElementDetails4`,
+      style({ opacity: 0 }), { optional: true }),
+    group([
+      query('.timelineElementIcon0', [
+        style({ opacity: 0 }),
+        animate('.5s'),
+      ]),
+      query('.timelineElementDetails0', [
+        style({ opacity: 0, transform: 'translateX(-5%)' }),
+        animate('.5s'),
+      ]),
+    ]),
+    group([
+      query('.timelineElementIcon1', [
+        style({ opacity: 0 }),
+        animate('.5s'),
+      ]),
+      query('.timelineElementDetails1', [
+        style({ opacity: 0, transform: 'translateX(-5%)' }),
+        animate('.5s'),
+      ]),
+    ]),
+    group([
+      query('.timelineElementIcon2', [
+        style({ opacity: 0 }),
+        animate('.5s'),
+      ]),
+      query('.timelineElementDetails2', [
+        style({ opacity: 0, transform: 'translateX(-5%)' }),
+        animate('.5s'),
+      ]),
+    ]),
+    group([
+      query('.timelineElementIcon3', [
+        style({ opacity: 0 }),
+        animate('.5s'),
+      ]),
+      query('.timelineElementDetails3', [
+        style({ opacity: 0, transform: 'translateX(-5%)' }),
+        animate('.5s'),
+      ]),
+    ]),
+    group([
+      query('.timelineElementIcon4', [
+        style({ opacity: 0 }),
+        animate('.5s'),
+      ]),
+      query('.timelineElementDetails4', [
+        style({ opacity: 0, transform: 'translateX(-5%)' }),
+        animate('.5s'),
+      ]),
+    ]),
+  ]),
 ]);
 
 export const homeSkillsAnimation = trigger('homeSkillsAnimation', [
-  transition(':enter', [
+  state('initial', style({ opacity: 0 })),
+  transition('* => toggleSkillsAnimation', [
+    animate('0s'),
     query('.center-text, .skill-names-container, .skill-desc-title, .skill-progress-ring, .skill-desc-desc',
       [style({ opacity: 0 })]),
     group([
@@ -197,8 +354,46 @@ export const homeSkillsAnimation = trigger('homeSkillsAnimation', [
   ])
 ]);
 
+export const homeCompressedSkillsAnimation = trigger('homeCompressedSkillsAnimation', [
+  state('initial', style({ opacity: 0 })),
+  transition('* => toggleSkillsAnimation', [
+    animate('0s'),
+    query('.center-text, .compressed-skill-names-container, .skill-desc-title, .skill-progress-ring, .compressed-skill-desc-desc',
+      [style({ opacity: 0 })]),
+    group([
+      query('.center-text', [
+        style({ opacity: 0, transform: 'translateY(-20%)' }),
+        animate('.75s'),
+      ]),
+      query('.horizontal-divider', [
+        style({ transform: 'scale3d(0,1,1)' }),
+        animate('.75s'),
+      ]),
+    ]),
+    query('.compressed-skill-names-container', [
+      style({ opacity: 0, transform: 'translateY(-20%)'}),
+      animate('.75s')
+    ]),
+    query('.skill-desc-title', [
+      style({ opacity: 0, transform: 'translateY(-20%)'}),
+      animate('.5s')
+    ]),
+    query('.skill-progress-ring', [
+      style({ opacity: 0 }),
+      animate('.5s')
+    ]),
+    query('.compressed-skill-desc-desc', [
+      style({ opacity: 0, transform: 'translateY(-20%)'}),
+      animate('.5s')
+    ])
+  ])
+]);
+
 export const homeMoreInfoAnimation = trigger('homeMoreInfoAnimation', [
-  transition(':enter', [
+  state('initial', style({ opacity: 0 })),
+  state('toggleMoreInfoAnimation', style({ opacity: 1 })),
+  transition('* => toggleMoreInfoAnimation', [
+    animate('0s'),
     query('.center-text, .horizontal-divider, .info-card0, .info-card1, .info-card2', [style({ opacity: 0 })]),
     group([
       query('.center-text', [
@@ -225,10 +420,44 @@ export const homeMoreInfoAnimation = trigger('homeMoreInfoAnimation', [
       ])
     ])
   ])
-])
+]);
+
+export const homeCompressedMoreInfoAnimation = trigger('homeCompressedMoreInfoAnimation', [
+  state('initial', style({ opacity: 0 })),
+  state('toggleMoreInfoAnimation', style({ opacity: 1 })),
+  transition('* => toggleMoreInfoAnimation', [
+    animate('0s'),
+    query('.center-text, .horizontal-divider, .info-card0, .info-card1, .info-card2', [style({ opacity: 0 })]),
+    group([
+      query('.center-text', [
+        style({ opacity: 0, transform: 'translateY(-20%)' }),
+        animate('.75s'),
+      ]),
+      query('.horizontal-divider', [
+        style({ transform: 'scale3d(0,1,1)' }),
+        animate('.75s'),
+      ]),
+    ]),
+    query('.info-card0', [
+      style({ opacity: 0, transform: 'translateY(-20%)' }),
+      animate('.65s'),
+    ]),
+    query('.info-card1', [
+      style({ opacity: 0, transform: 'translateY(-20%)' }),
+      animate('.65s'),
+    ]),
+    query('.info-card2', [
+      style({ opacity: 0, transform: 'translateY(-20%)' }),
+      animate('.65s'),
+    ])
+  ])
+]);
 
 export const homeConclusionAnimation = trigger('homeConclusionAnimation', [
-  transition(':enter', [
+  state('initial', style({ opacity: 0 })),
+  state('toggleConclusionAnimation', style({ opacity: 1 })),
+  transition('* => toggleConclusionAnimation', [
+    animate('0s'),
     query('.conclusion, .contact-text, .vertical-divider, .connect-text, .intro-button',
       [style({ opacity: 0 })]),
     query('.conclusion', [
@@ -246,6 +475,38 @@ export const homeConclusionAnimation = trigger('homeConclusionAnimation', [
       ]),
       query('.connect-text', [
         style({ opacity: 0, transform: 'translateX(20%)'}),
+        animate('.75s')
+      ])
+    ]),
+    query('.intro-button', [
+      style({ opacity: 0 }),
+      animate('1s'),
+    ]),
+  ])
+]);
+
+export const homeCompressedConclusionAnimation = trigger('homeCompressedConclusionAnimation', [
+  state('initial', style({ opacity: 0 })),
+  state('toggleConclusionAnimation', style({ opacity: 1 })),
+  transition('* => toggleConclusionAnimation', [
+    animate('0s'),
+    query('.compressed-conclusion, .contact-text, .intro-compressed-divider, .connect-text, .intro-button',
+      [style({ opacity: 0 })]),
+    query('.compressed-conclusion', [
+      style({ opacity: 0, transform: 'translateY(-20%)' }),
+      animate('.75s')
+    ]),
+    query('.intro-compressed-divider', [
+      style({ transform: 'scale3d(0,1,1)' }),
+      animate('.75s'),
+    ]),
+    group([
+      query('.contact-text', [
+        style({ opacity: 0, transform: 'translateY(50%)'}),
+        animate('.75s')
+      ]),
+      query('.connect-text', [
+        style({ opacity: 0, transform: 'translateY(-30%)'}),
         animate('.75s')
       ])
     ]),

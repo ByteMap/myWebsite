@@ -31,11 +31,6 @@ export namespace HomeModel {
     description?: string,
     proficiency: Array<ProgressData>
   }
-
-  export interface MoreInfoElement {
-    title: string,
-    elementIcon: any
-  }
 }
 
 export var headerElements: Array<Array<HomeModel.PageElement>> = [
@@ -137,30 +132,57 @@ export var skillElements: Array<HomeModel.SkillElement> = [
     ]
   },
   { skill: 'Hibernate',
+    description: `I have had a brief, but fulfilling experience working with Java Hibernate during my time at the Genomics Institute. My most memorable experience working with the
+                  framework was when I was assigned a ticket which required me to create an endpoint that would update a given user's administrator status. Before I started building the
+                  endpoint, I had to understand how Hibernate would play a role in my ticket. I learned that updating the User object field would not be the complete solution as the database
+                  would not know that the User object was updated. That was when I learned of Hibernate's role where it would take the newly updated field of the object and update the
+                  database through the '@Column' annotation. Although I have some experience working with Hibernate, the framework is still very new to me; however, I intend to learn more
+                  about it as the learning experience was not only fun, but the whole framework simply fascinated me.`,
     proficiency: [
       { label: 'Comfort', rating: 50 },
       { label: 'Knowledge', rating: 40 }
     ]
   },
   { skill: 'PostgreSQL',
+    description: `After taking a course on PostgreSQL during my last year of college, I started to increase my experience with the database management system
+                  by requesting that I take on more tickets related to the backend at work. From there, I started to exercise and familiarize myself with the
+                  topics that I had learned in class, such as adding table constraints, retrieving specific data entries from table(s), and joining tables. Though
+                  I had some frustrating experiences with working with PostgreSQL, such as trying to figure out why exporting a table to a csv file was not working,
+                  I still enjoyed working with the DBMS as it was satisfying to see data being retrieved when asked or creating a relational algebra formula that
+                  actually worked as intended. I do hope that for my next job, I can work with PostgreSQL again or any other DBMS.`,
     proficiency: [
       { label: 'Comfort', rating: 75 },
       { label: 'Knowledge', rating: 70 }
     ]
   },
   { skill: 'OpenAPI',
+    description: `I was introduced to the OpenAPI specification when I first started working on the backend of the Dockstore Project. At first glance, I was intimidated
+                  by the amount of annotations that OpenAPI provided, but after I started working with those annotations and learning their purposes, I became more
+                  comfortable working with OpenAPI. Throughout the time where I was learning and utilizing OpenAPI, I have created several RESTful APIs, such as enabling
+                  users to delete a certain request that they had made. However, despite that I have some experience working with OpenAPI, I know that there are still a lot more
+                  topics on the specification that I have yet to touch upon. Possibly in the near future, I can think of a fun pet project to do where I can utilize OpenAPI and
+                  learn more about the topics that I have yet to cover.`,
     proficiency: [
       { label: 'Comfort', rating: 60 },
       { label: 'Knowledge', rating: 40 }
     ]
   },
   { skill: 'CircleCI/TravisCI',
+    description: `I learned about the importance of creating tests for my code when I first started off my career. As I was working as a web developer at the time, I would
+                  utilize CircleCI for writing integration tests for the front-end tickets that I was assigned with, and TravisCI for my assigned back-end tickets. Getting
+                  used to writing integration tests took some time I was unfamiliar with not only the technology that I was using for the tests, but the concept of integration
+                  testing as well. Over the course of about a month, I had gotten used to utilizing CircleCI and TravisCI to create my own integration tests, and I soon realized
+                  the importance of writing integration tests as they had saved me countless times whenever I had modified my code based off of the feedback that I had received.
+                  However, despite utilizing the two technologies for some time, I still have a lot to learn such as building artifacts for CircleCI.`,
     proficiency: [
       { label: 'Comfort', rating: 85 },
       { label: 'Knowledge', rating: 70 }
     ]
   },
   { skill: 'HTML/SCSS',
+    description: `Working with HTML and SCSS/CSS has been pretty straight forward to me. Though learning HTML was fairly simple, learning SCSS was a bit more complicated
+                  due to the large amount of things to understand such as grid-layouts, flexbox, and animations. Even now, I'm constantly exploring and practicing unfamiliar
+                  topics that SCSS/CSS has to offer, such as keyframes, control directives, and selectors.`,
     proficiency: [
       { label: 'Comfort', rating: 95 },
       { label: 'Knowledge', rating: 85 }
@@ -168,11 +190,14 @@ export var skillElements: Array<HomeModel.SkillElement> = [
   },
 ]
 
-export var moreInfoElements: Array<HomeModel.MoreInfoElement> = [
-  { title: 'Hobbies',
-    elementIcon: faGamepad },
-  { title: 'Experience',
-    elementIcon: faBriefcase },
-  { title: 'Projects',
-    elementIcon: faProjectDiagram }
+export var moreInfoElements: Array<HomeModel.PageElement> = [
+  { elementName: 'Hobbies',
+    elementIcon: faGamepad,
+    elementAction: { action: 'redirect', parameter: 'my-hobbies' }},
+  { elementName: 'Experience',
+    elementIcon: faBriefcase,
+    elementAction: { action: 'redirect', parameter: 'my-experience' }},
+  { elementName: 'Projects',
+    elementIcon: faProjectDiagram,
+    elementAction: { action: 'redirect', parameter: 'my-projects' }}
 ]

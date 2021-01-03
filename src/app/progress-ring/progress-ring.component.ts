@@ -8,13 +8,15 @@ import { ProgressData } from "../data.model";
 })
 export class ProgressRingComponent implements AfterViewChecked {
   @Input() progressRingData: Array<ProgressData>;
+  @Input() progressRingContainerSize: string;
+  @Input() progressRingSize: string;
+  @Input() ratingFontSize?: string;
+  @Input() labelFontSize?: string;
   private progressRingDataCopy: Array<ProgressData>;
 
   constructor() {}
 
-
   ngAfterViewChecked() {
-    // console.log(this.progressRingData);
     if(this.progressRingDataCopy != this.progressRingData) {
       this.displayProgressAnimation();
     }
@@ -48,5 +50,20 @@ export class ProgressRingComponent implements AfterViewChecked {
       setTimeout(() => progress.style.strokeDashoffset = offset.toString(), 150);
     });
     this.progressRingDataCopy = this.progressRingData;
+  }
+
+  getSize(firstNumber: string, secondNumber: number, operator): string {
+    switch(operator) {
+      case '+':
+        return (Number(firstNumber) + secondNumber).toString();
+      case '-':
+        return (Number(firstNumber) - secondNumber).toString();
+      case '*':
+        return (Number(firstNumber) * secondNumber).toString();
+      case '/':
+        return (Number(firstNumber) / secondNumber).toString();
+      case '^':
+        return (Number(firstNumber) ^ secondNumber).toString();
+    }
   }
 }

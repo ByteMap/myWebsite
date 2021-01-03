@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { MediaObserver } from "@angular/flex-layout";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
 @Component({
@@ -9,6 +10,10 @@ import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 export class PageFooterComponent implements OnInit {
   gitHubIcon = faGithub;
   linkedInIcon = faLinkedin;
+
+  constructor(
+    public mediaObserver: MediaObserver
+  ) {}
 
   ngOnInit() {}
 }

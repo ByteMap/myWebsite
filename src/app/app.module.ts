@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {APP_INITIALIZER, NgModule} from '@angular/core';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import {FlexLayoutModule, MediaObserver} from '@angular/flex-layout';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { FlexLayoutModule, MediaObserver } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,7 +10,6 @@ import { HomePageComponent } from "./home-page/home-page.component";
 import { MatListModule } from '@angular/material/list';
 import { HobbiesPageComponent } from './hobbies-page/hobbies-page.component';
 import { HobbiesPageService } from './hobbies-page/hobbies-page.service';
-import { SidebarNavigationComponent } from './sidebar-navigation/sidebar-navigation.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -39,7 +37,6 @@ import { PageFooterComponent } from "./page-footer/page-footer.component";
     AppComponent,
     HomePageComponent,
     HobbiesPageComponent,
-    SidebarNavigationComponent,
     ExperiencePageComponent,
     ContentDialogComponent,
     PageHeaderComponent,
@@ -55,7 +52,6 @@ import { PageFooterComponent } from "./page-footer/page-footer.component";
     FormsModule,
     FlexLayoutModule,
     LayoutModule,
-    MatSidenavModule,
     MatButtonModule,
     MatListModule,
     MatIconModule,

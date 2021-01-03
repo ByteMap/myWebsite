@@ -1,19 +1,27 @@
 <div class="home-container">
-  <ng-container *ngIf="mediaObserver.isActive('lt-md') then uncompressedHeader else uncompressedHeader" (mouseover)="displayHeaderAnimation()"></ng-container>
-  <section class="image-box" style="--url: url('../../assets/images/home-page-images/intro-image.jpeg')">
-    <ng-container *ngIf="mediaObserver.isActive('lt-lg') then compressedIntro else uncompressedIntro"></ng-container>
-  </section>
-  <ng-container *ngIf="mediaObserver.isActive('lt-md') then compressedAbout else uncompressedAbout"></ng-container>
-  <section class="image-box compressed-homePage-sections flex-column pt-3 pb-3" style="--url: url('../../assets/images/home-page-images/skills-background.jpeg')">
-    <ng-container *ngIf="mediaObserver.isActive('lt-md') then compressedTimelineHeader else uncompressedTimelineHeader"></ng-container>
-    <timeline [@timelineAnimation] [data]="timeLineElements"></timeline>
-  </section>
-  <ng-container *ngIf="mediaObserver.isActive('lt-md') then uncompressedSkills else uncompressedSkills"></ng-container>
-  <section class="image-box" style="--url: url('../../assets/images/home-page-images/moreInfo-background.jpeg')">
-    <ng-container *ngIf="mediaObserver.isActive('lt-md') then uncompressedMoreInfo else uncompressedMoreInfo"></ng-container>
-  </section>
-  <ng-container *ngIf="mediaObserver.isActive('lt-md') then uncompressedConclusion else uncompressedConclusion"></ng-container>
-  <page-footer></page-footer>
+  <ng-container *ngIf="mediaObserver.isActive('lt-md') then compressedHeader else uncompressedHeader" (mouseover)="displayHeaderAnimation()"></ng-container>
+  <div id="content">
+    <section id="intro-section" class="home-section image-box" style="--url: url('../../assets/images/home-page-images/intro-image.jpeg')">
+      <ng-container *ngIf="mediaObserver.isActive('lt-lg') then compressedIntro else uncompressedIntro"></ng-container>
+    </section>
+    <section id="about-section" class="home-section">
+      <ng-container *ngIf="mediaObserver.isActive('lt-md') then compressedAbout else uncompressedAbout"></ng-container>
+    </section>
+    <section id="timeline-section" class="home-section image-box compressed-homePage-sections flex-column pt-3 pb-3" style="--url: url('../../assets/images/home-page-images/skills-background.jpeg')">
+      <ng-container *ngIf="mediaObserver.isActive('lt-md') then compressedTimelineHeader else uncompressedTimelineHeader"></ng-container>
+      <timeline [@timelineAnimation]="timelineSectionAnimationState" [data]="timeLineElements"></timeline>
+    </section>
+    <section id="skills-section" class="home-section">
+      <ng-container *ngIf="mediaObserver.isActive('lt-md') then compressedSkills else uncompressedSkills"></ng-container>
+    </section>
+    <section id="moreInfo-section" class="home-section image-box" style="--url: url('../../assets/images/home-page-images/moreInfo-background.jpeg')">
+      <ng-container *ngIf="mediaObserver.isActive('lt-md') then compressedMoreInfo else uncompressedMoreInfo"></ng-container>
+    </section>
+    <section id="conclusion-section" class="home-section">
+      <ng-container *ngIf="mediaObserver.isActive('lt-md') then compressedConclusion else uncompressedConclusion"></ng-container>
+    </section>
+    <page-footer></page-footer>
+  </div>
 </div>
 
 <ng-template #uncompressedHeader>
@@ -31,8 +39,26 @@
   </div>
 </ng-template>
 
+<ng-template #compressedHeader>
+  <div [@homeHeaderAnimation]="headerIsVisible" id="compressedHeader" class="home-header font-Droid-Serif fs-60">
+    <div class="row w-100">
+      <div class="header-icon-element fs-60" (click)="executeMethod(element.elementAction)" *ngFor="let element of headerElements[0]">
+        <fa-icon [icon]="element.elementIcon"></fa-icon>
+      </div>
+    </div>
+    <div class="header-links-container w-100">
+      <fa-icon [icon]="sidebarIcon" (click)="toggleSidebar($event)"></fa-icon>
+    </div>
+    <div [@homeSidebarAnimation]="sidebarToggled" class="sidebar-container flex-column flex-center" (click)="$event.stopPropagation()">
+      <div class="text-button-element border-animation pt-1 mt-1" (click)="executeMethod(element.elementAction)" *ngFor="let element of headerElements[1]">
+        {{element.elementName}}
+      </div>
+    </div>
+  </div>
+</ng-template>
+
 <ng-template #uncompressedIntro>
-  <section [@homeIntroAnimation] (@homeIntroAnimation.done)="handleDone($event)" class="homePage-sections font-Arial-Rounded flex-column" [ngClass]="'homeIntro'">
+  <section [@homeIntroAnimation]="introSectionAnimationState" (@homeIntroAnimation.done)="handleDone($event)" class="homePage-sections font-Arial-Rounded flex-column" [ngClass]="'homeIntro'">
     <div class="row-100 flex-center center-text">
       <div class="w-100 intro-left">
         <div>Hi, nice to meet you!</div>
@@ -46,21 +72,21 @@
 </ng-template>
 
 <ng-template #compressedIntro>
-  <section class="homePage-sections font-Arial-Rounded sections-compressed fs-60">
-    <div class="center-text">
+  <section [@homeCompressedIntroAnimation]="introSectionAnimationState" class="homePage-sections font-Arial-Rounded sections-compressed fs-60">
+    <div class="intro-top center-text">
       <div>Hi, nice to meet you!</div>
       <div>I'm <span class="name fw-b"> Andy Chen</span>. </div>
     </div>
     <hr class="intro-compressed-divider">
-    <div class="center-text"> Software Engineer </div>
+    <div class="intro-bottom center-text"> Software Engineer </div>
     <div class="font-Droid-Serif fs-60 intro-button text-button-element border-animation" (click)="scrollToAbout()"> About Me </div>
   </section>
 </ng-template>
 
 <ng-template #uncompressedAbout>
-  <section [@homeAboutAnimation] #uncompressedAboutSection id="uncompressedAbout" class="font-Arial-Rounded" [class]="mediaObserver.isActive('gt-md') ? 'homePage-sections' : 'compressed-homePage-sections'">
+  <section [@homeAboutAnimation]="aboutSectionAnimationState" #uncompressedAboutSection id="uncompressedAbout" class="font-Arial-Rounded" [class]="mediaObserver.isActive('gt-md') ? 'homePage-sections' : 'compressed-homePage-sections'">
     <div class="desc-container">
-      <div class="sectionTitle fs-80 fw-b center-text"> About Me </div>
+      <div class="fs-80 fw-b center-text"> About Me </div>
       <hr class="horizontal-divider">
       <div class="font-Droid-Serif fs-50">
         <div class="aboutSection1"> Hi there! I'm Andy, a Junior Software Engineer. </div>
@@ -86,66 +112,64 @@
 </ng-template>
 
 <ng-template #compressedAbout>
-  <section #compressedAboutSection id="compressedAbout" class="compressed-homePage-sections font-Arial-Rounded sections-compressed"
-           [class]="mediaObserver.isActive('xs') ? 'compressed-sections-padding': ''">
+  <section [@homeCompressedAboutAnimation]="aboutSectionAnimationState" #compressedAboutSection id="compressedAbout" class="compressed-homePage-sections font-Arial-Rounded sections-compressed"
+           [class]="mediaObserver.isActive('xs') ? 'supercompressed-sections-padding': 'compressed-sections-padding'">
     <div class="desc-container">
       <div class="fs-60 fw-b center-text"> About Me </div>
       <hr class="horizontal-divider">
       <div class="font-Droid-Serif fs-40">
-        <div> Hi there! I'm Andy, a Junior Software Engineer. </div>
-        <div class="pt-1">
+        <div class="aboutSection1"> Hi there! I'm Andy, a Junior Software Engineer. </div>
+        <div class="aboutSection2 pt-1">
           I graduated from the University of California, Santa Cruz with a B.S. in Computer Science during the summer of 2020.
         </div>
-        <div class="pt-1">
+        <div class="aboutSection3 pt-1">
           I really enjoy programming as it gives me a great sense of satisfaction every time I get something to work, and understand why it works.
           Programming to me is like working on a massive jigsaw puzzle with each piece being something that I will have to learn whether they be new
           technologies or methodologies. By piecing everything together, something magnificent can then be created.
         </div>
-        <div class="pt-1">
+        <div class="aboutSection4 pt-1">
           For the past year, I had the honor of working at the UCSC Genomics Institute as a Full Stack Web Developer for the Dockstore project.
           Not only was I able to learn more about the industry that I was headed into, but I was also able to learn about new coding practices, methodologies,
           and technologies. My time at the Genomics Institute had ultimately given me more experienced than I had hoped for in order to start off my career.
         </div>
       </div>
     </div>
-    <div class="home-image-container mt-1" fxHide fxShow.gt-sm fxShow.sm>
-      <img class="profile-image" src="/assets/images/home-page-images/profile-image.png" alt="Avatar">
-    </div>
-    <div class="mt-1" fxHide fxShow.lt-sm>
+    <div class="mt-1" [class]="mediaObserver.isActive('xs') ? 'supercompressed-image-container' : 'home-image-container'">
       <img class="profile-image" src="/assets/images/home-page-images/profile-image.png" alt="Avatar">
     </div>
   </section>
 </ng-template>
 
 <ng-template #uncompressedTimelineHeader>
-  <div [@homeTimelineHeaderAnimation] class="desc-container font-Arial-Rounded">
+  <div [@homeTimelineHeaderAnimation]="timelineSectionAnimationState" class="desc-container font-Arial-Rounded">
     <div class="fs-80 fw-b center-text"> Journey </div>
     <hr class="horizontal-divider">
   </div>
 </ng-template>
 
 <ng-template #compressedTimelineHeader>
-  <div [@homeTimelineHeaderAnimation] class="desc-container font-Arial-Rounded">
+  <div [@homeTimelineHeaderAnimation]="timelineSectionAnimationState" class="desc-container font-Arial-Rounded">
     <div class="fs-60 fw-b center-text"> Journey </div>
     <hr class="horizontal-divider">
   </div>
 </ng-template>
 
 <ng-template #uncompressedSkills>
-  <section [@homeSkillsAnimation] class="compressed-homePage-sections flex-column">
+  <section [@homeSkillsAnimation]="skillsSectionAnimationState" class="compressed-homePage-sections flex-column">
     <div class="desc-container font-Arial-Rounded">
       <div class="fs-80 fw-b center-text"> Skills </div>
       <hr class="horizontal-divider">
     </div>
     <div class="skills-container">
       <div class="skill-names-container flex-column font-Droid-Serif fs-60">
-        <div class="skill-name-container" *ngFor="let skill of skillElements" (mouseover)="displaySkillInformation(skill)">
+        <div class="skill-name-container skill-name-container-size" *ngFor="let skill of skillElements" (click)="displaySkillInformation(skill)" [id]="skill.skill">
           <span> {{ skill.skill }} </span>
         </div>
       </div>
       <div class="skill-description-container font-Droid-Serif">
         <div class="skill-desc-title"> {{(skillDescription$ | async)?.skill}} </div>
-        <progress-ring class="skill-progress-ring" [progressRingData]="(skillDescription$ | async)?.proficiency"></progress-ring>
+        <progress-ring class="skill-progress-ring" [progressRingData]="(skillDescription$ | async)?.proficiency"
+                       [progressRingContainerSize]="150" [progressRingSize]="70"></progress-ring>
         <div class="fs-50 skill-desc-desc"> {{(skillDescription$ | async)?.description}} </div>
       </div>
       <div>
@@ -154,24 +178,65 @@
   </section>
 </ng-template>
 
+<ng-template #compressedSkills>
+  <section [@homeCompressedSkillsAnimation]="skillsSectionAnimationState" class="compressed-homePage-sections flex-column">
+    <div class="desc-container font-Arial-Rounded">
+      <div class="fs-80 fw-b center-text"> Skills </div>
+      <hr class="horizontal-divider">
+    </div>
+    <div class="skills-container flex-column">
+      <div class="compressed-skill-names-container row font-Droid-Serif fs-30">
+        <div class="skill-name-container compressed-skill-name-container-size" *ngFor="let skill of skillElements" (click)="displaySkillInformation(skill)" [id]="skill.skill">
+          <span> {{ skill.skill }} </span>
+        </div>
+      </div>
+      <div class="skill-description-container font-Droid-Serif">
+        <div class="skill-desc-title fs-60 mt-1"> {{(skillDescription$ | async)?.skill}} </div>
+        <progress-ring class="skill-progress-ring" [progressRingData]="(skillDescription$ | async)?.proficiency"
+                       [progressRingContainerSize]="100" [progressRingSize]="40" [ratingFontSize]="'1.5rem'"
+                       [labelFontSize]="'1.25rem'"></progress-ring>
+        <div class="fs-40 compressed-skill-desc-desc"> {{(skillDescription$ | async)?.description}} </div>
+      </div>
+      <div>
+      </div>
+    </div>
+  </section>
+</ng-template>
+
 <ng-template #uncompressedMoreInfo>
-  <section [@homeMoreInfoAnimation] class="compressed-homePage-sections flex-column banner-section">
+  <section [@homeMoreInfoAnimation]="moreInfoSectionAnimationState" class="compressed-homePage-sections flex-column banner-section">
     <div class="desc-container font-Arial-Rounded">
       <div class="fs-80 fw-b center-text"> More </div>
       <hr class="horizontal-divider">
     </div>
     <div class="row w-100">
       <mat-card class="redirect-card font-Droid-Serif card-style-pointer flex-center ml-1 mr-1"
-                *ngFor="let moreInfoElement of moreInfoElements; let i = index" [ngClass]="'info-card'+i">
-        <div class="more-info-title"> {{moreInfoElement.title}} </div>
+                *ngFor="let moreInfoElement of moreInfoElements; let i = index" [ngClass]="'info-card'+i" (click)="executeMethod(moreInfoElement.elementAction)">
+        <div class="more-info-title"> {{ moreInfoElement.elementName }} </div>
         <fa-icon class="more-info-icon" [icon]="moreInfoElement.elementIcon"></fa-icon>
       </mat-card>
     </div>
   </section>
 </ng-template>
 
+<ng-template #compressedMoreInfo>
+  <section [@homeCompressedMoreInfoAnimation]="moreInfoSectionAnimationState" class="compressed-homePage-sections flex-column banner-section">
+    <div class="desc-container font-Arial-Rounded">
+      <div class="fs-80 fw-b center-text"> More </div>
+      <hr class="horizontal-divider">
+    </div>
+    <div class="w-100">
+      <mat-card class="redirect-card compressed-redirect-card-style font-Droid-Serif card-style-pointer flex-center"
+                *ngFor="let moreInfoElement of moreInfoElements; let i = index" [ngClass]="'info-card'+i" (click)="executeMethod(moreInfoElement.elementAction)">
+        <div class="more-info-title fs-80"> {{ moreInfoElement.elementName }} </div>
+        <fa-icon class="more-info-icon fs-80" [icon]="moreInfoElement.elementIcon"></fa-icon>
+      </mat-card>
+    </div>
+  </section>
+</ng-template>
+
 <ng-template #uncompressedConclusion>
-  <section [@homeConclusionAnimation] class="compressed-homePage-sections banner-section font-Arial-Rounded flex-column">
+  <section [@homeConclusionAnimation]="conclusionSectionAnimationState" class="compressed-homePage-sections banner-section font-Arial-Rounded flex-column">
     <div class="flex-center center-text conclusion"> Thanks For Visiting! </div>
     <div class="row-100 flex-center center-text font-Droid-Serif fs-50">
       <div class="w-100">
@@ -179,7 +244,7 @@
           If you would like to reach out to me, please feel free to shoot me an email by clicking on the button below.
           I will try to get back to you as soon as possible!
         </div>
-        <div class="intro-button text-button-element border-animation centerX mt-1"> Contact Me </div>
+        <div class="intro-button text-button-element border-animation centerX mt-1" (click)="sendEmail()"> Contact Me </div>
       </div>
       <div class="vertical-divider"></div>
       <div class="w-100">
@@ -187,7 +252,30 @@
           I'm always open to forming new connections. If you would like to connect with me via LinkedIn, I'm more than happy
           to accept!
         </div>
-        <div class="intro-button text-button-element border-animation centerX mt-1"> Connect </div>
+        <div class="intro-button text-button-element border-animation centerX mt-1" (click)="executeMethod(headerElements[0][1].elementAction)"> Connect </div>
+      </div>
+    </div>
+  </section>
+</ng-template>
+
+<ng-template #compressedConclusion>
+  <section [@homeCompressedConclusionAnimation]="conclusionSectionAnimationState" class="compressed-homePage-sections banner-section font-Arial-Rounded flex-column">
+    <div class="flex-center center-text compressed-conclusion fs-60 mt-1"> Thanks For Visiting! </div>
+    <div class="flex-center center-text font-Droid-Serif fs-40 flex-column">
+      <div class="w-100">
+        <div class="contact-text">
+          If you would like to reach out to me, please feel free to shoot me an email by clicking on the button below.
+          I will try to get back to you as soon as possible!
+        </div>
+        <div class="intro-button text-button-element border-animation centerX fs-30 mt-1" (click)="sendEmail()"> Contact Me </div>
+      </div>
+      <hr class="intro-compressed-divider">
+      <div class="w-100">
+        <div class="connect-text">
+          I'm always open to forming new connections. If you would like to connect with me via LinkedIn, I'm more than happy
+          to accept!
+        </div>
+        <div class="intro-button text-button-element border-animation centerX fs-30 mt-1" (click)="executeMethod(headerElements[0][1].elementAction)"> Connect </div>
       </div>
     </div>
   </section>
