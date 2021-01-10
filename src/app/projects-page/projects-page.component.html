@@ -11,22 +11,13 @@
        fxLayout="row wrap" fxLayoutGap.gt-xs="4rem grid">
     <div [class]="mediaObserver.isActive('xs') ? 'pt-custom' : ''" fxFlex="33%" fxFlex.lt-sm="100%" fxFlex.sm="100%" fxFlex.md="50%" *ngFor="let project of projects; let i = index">
       <mat-card class="card-style flex-column card-style-pointer custom-card-height mat-elevation-z4" (click)="openDialog(project)" [ngClass]="'project'+i">
-        <div class="header font-Droid-Serif fs-80 fw-b flex-center" fxHide fxShow.gt-xs>
-          <div class="title"> {{project.title}} </div>
-          <div class="redirect">
+        <div class="font-Droid-Serif fs-80 fw-b" [class]="mediaObserver.isActive('xs') ? 'compressed-header' : 'header flex-center'">
+          <div [class]="mediaObserver.isActive('xs') ? 'flex-center fs-40' : 'title'"> {{project.title}} </div>
+          <div class="redirect" [class]="mediaObserver.isActive('xs') ? 'compressed-redirect fs-40' : 'redirect'">
             <fa-icon *ngIf="project.contributedProject" class="mr-1" [icon]="importantNoticeIcon" [matTooltip]="importantNoticeTooltip" [matTooltipPosition]="'above'"></fa-icon>
             <fa-icon [icon]="redirectIcon" (click)="redirect(project.link)"></fa-icon>
           </div>
         </div>
-
-        <div class="compressed-header font-Droid-Serif fs-80 fw-b" fxHide fxShow.xs>
-          <div class="flex-center fs-40"> {{project.title}} </div>
-          <div class="compressed-redirect fs-40">
-            <fa-icon *ngIf="project.contributedProject" [icon]="importantNoticeIcon" [matTooltip]="importantNoticeTooltip" [matTooltipPosition]="'above'"></fa-icon>
-            <fa-icon [icon]="redirectIcon" class="icon-position-right" (click)="redirect(project.link)"></fa-icon>
-          </div>
-        </div>
-
         <div class="logo-container">
           <img class="row-100" src="{{project.logo}}">
         </div>
