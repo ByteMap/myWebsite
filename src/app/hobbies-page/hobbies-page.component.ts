@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { MediaObserver } from "@angular/flex-layout";
-import { HobbiesPageService } from './hobbies-page.service';
-import { MatDialog } from "@angular/material/dialog";
-import { ContentDialogService } from "../content-dialog/content-dialog.service";
-import { ContentDialogData } from "../content-dialog/content-dialog.component";
-import { hobbies, HobbiesModel } from "../data.model";
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {MediaObserver} from "@angular/flex-layout";
+import {HobbiesPageService} from './hobbies-page.service';
+import {MatDialog} from "@angular/material/dialog";
+import {ContentDialogService} from "../content-dialog/content-dialog.service";
+import {ContentDialogData} from "../content-dialog/content-dialog.component";
+import {hobbies, HobbiesModel} from "../data.model";
 import {hobbiesPageAnimation} from "../animations";
 
 @Component({
   selector: 'app-hobbies-page',
   templateUrl: './hobbies-page.component.html',
   styleUrls: ['./hobbies-page.component.scss'],
-  animations: [ hobbiesPageAnimation ]
+  animations: [ hobbiesPageAnimation ],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class HobbiesPageComponent implements OnInit {

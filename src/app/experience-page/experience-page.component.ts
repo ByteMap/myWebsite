@@ -1,18 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { MediaObserver } from "@angular/flex-layout";
-import { ExperiencePageService } from "./experience-page.service";
-import { ContentDialogService } from "../content-dialog/content-dialog.service";
-import { experiencePageAnimation } from "../animations";
-import { ContentDialogData } from "../content-dialog/content-dialog.component";
-import { ExperienceModel, experiences } from "../data.model";
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {MediaObserver} from "@angular/flex-layout";
+import {ExperiencePageService} from "./experience-page.service";
+import {ContentDialogService} from "../content-dialog/content-dialog.service";
+import {experiencePageAnimation} from "../animations";
+import {ContentDialogData} from "../content-dialog/content-dialog.component";
+import {ExperienceModel, experiences} from "../data.model";
 
 @Component({
   selector: 'app-experience-page',
   templateUrl: './experience-page.component.html',
   styleUrls: ['./experience-page.component.scss'],
-  animations: [
-    experiencePageAnimation,
-  ]
+  animations: [ experiencePageAnimation ],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class ExperiencePageComponent implements OnInit {

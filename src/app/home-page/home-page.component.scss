@@ -17,7 +17,6 @@
   padding-left: 5%;
   padding-right: 5%;
   box-shadow: 0 0.5rem 0.5rem rgba(0,0,0,0.1);
-  //background: rgba(0,0,0,0.15);
   z-index: 2;
 }
 
@@ -219,7 +218,6 @@
 
 .image-box {
   background: var(--url) no-repeat center center fixed;
-  background-repeat: no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
