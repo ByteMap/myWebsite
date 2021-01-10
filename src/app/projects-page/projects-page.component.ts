@@ -11,8 +11,7 @@ import {projectsPageAnimation} from "../animations";
   selector: 'app-projects-page',
   templateUrl: './projects-page.component.html',
   styleUrls: ['./projects-page.component.scss'],
-  animations: [ projectsPageAnimation ],
-  encapsulation: ViewEncapsulation.None
+  animations: [ projectsPageAnimation ]
 })
 
 export class ProjectsPageComponent implements OnInit {
@@ -35,6 +34,8 @@ export class ProjectsPageComponent implements OnInit {
       (isListView) => this.listView = isListView
     );
     this.viewState = JSON.parse(localStorage.getItem('projectsPageIsListView')) === true ? 'listView' : 'gridView';
+    document.querySelector('body').style.overflowX = 'hidden';
+    document.querySelector('html').style.overflowX = 'hidden';
   }
 
   openDialog(project: ProjectsModel.Project) {

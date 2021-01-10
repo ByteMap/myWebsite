@@ -13,19 +13,19 @@
     <div [class]="mediaObserver.isActive('xs') ? 'pt-custom' : ''" fxFlex="50%" fxFlex.xs="100%" *ngFor="let experience of experiences; let i = index">
       <mat-card class="card-style flex-column custom-card-height card-style-pointer mat-elevation-z4 pt-4"
                 [ngClass]="'experience' + i" (click)="openDialog(experience)">
-        <b class="font-Droid-Serif fs-40 fw-b row" fxHide fxShow.gt-md>
+        <b class="font-Droid-Serif fs-40 fw-b row" *ngIf="mediaObserver.isActive('gt-md')">
           <span class="columnThirds left-text"> {{experience.company}} </span>
           <span class="columnThirds center-text"> {{experience.position}}</span>
           <span class="columnThirds right-text"> {{experience.timePeriod}} </span>
         </b>
-        <b class="font-Droid-Serif fs-40 fw-b row flex-center" fxHide fxShow.lt-md fxShow.md>
-          <span class="center-text"> {{experience.position}}</span>
+        <b class="font-Droid-Serif fs-40 fw-b row flex-center" *ngIf="mediaObserver.isActive('lt-md') || mediaObserver.isActive('md')">
+          <span> {{experience.position}}</span>
         </b>
         <div class="image-container">
           <img class="grid-image-style" mat-card-image src="{{experience.imagePath}}"/>
         </div>
-        <b class="font-Droid-Serif fs-40 fw-b row flex-center" fxHide fxShow.lt-md fxShow.md>
-          <span class="center-text"> {{experience.timePeriod}} </span>
+        <b class="font-Droid-Serif fs-40 fw-b row flex-center" *ngIf="mediaObserver.isActive('lt-md') || mediaObserver.isActive('md')">
+          <span> {{experience.timePeriod}} </span>
         </b>
       </mat-card>
     </div>

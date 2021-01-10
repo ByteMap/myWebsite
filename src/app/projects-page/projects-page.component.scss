@@ -57,23 +57,19 @@ html, body {
   display: flex;
   width: 50%;
 }
+::ng-deep {
+  div.mat-chip-list-wrapper {
+    flex-wrap: nowrap;
+    overflow-x: auto;
 
-div.mat-chip-list-wrapper {
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  padding-top: 2rem;
-
-  .mat-chip {
-    flex: 0 0 auto;
-    background-color: #EBEBEB;
-    color: #252A41;
+    .mat-chip {
+      flex: 0 0 auto;
+      background-color: #EBEBEB;
+      color: #252A41;
+    }
   }
 }
 
 .icon-position-right {
   margin-left: auto;
-}
-
-.projects-chip-position {
-  margin-top: auto;
 }

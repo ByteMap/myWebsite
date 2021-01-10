@@ -11,8 +11,7 @@ import {hobbiesPageAnimation} from "../animations";
   selector: 'app-hobbies-page',
   templateUrl: './hobbies-page.component.html',
   styleUrls: ['./hobbies-page.component.scss'],
-  animations: [ hobbiesPageAnimation ],
-  encapsulation: ViewEncapsulation.None
+  animations: [ hobbiesPageAnimation ]
 })
 
 export class HobbiesPageComponent implements OnInit {
@@ -30,6 +29,8 @@ export class HobbiesPageComponent implements OnInit {
   ngOnInit(): void {
     this.hobbiesPageService.currentView$.subscribe(isListView => this.listView = isListView);
     this.viewState = JSON.parse(localStorage.getItem('hobbiesPageIsListView')) === true ? 'listView' : 'gridView';
+    document.querySelector('body').style.overflowX = 'hidden';
+    document.querySelector('html').style.overflowX = 'hidden';
   }
 
   openDialog(hobby: HobbiesModel.Hobby) {

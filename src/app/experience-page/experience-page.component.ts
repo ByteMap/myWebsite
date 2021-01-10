@@ -10,8 +10,7 @@ import {ExperienceModel, experiences} from "../data.model";
   selector: 'app-experience-page',
   templateUrl: './experience-page.component.html',
   styleUrls: ['./experience-page.component.scss'],
-  animations: [ experiencePageAnimation ],
-  encapsulation: ViewEncapsulation.None
+  animations: [ experiencePageAnimation ]
 })
 
 export class ExperiencePageComponent implements OnInit {
@@ -30,6 +29,8 @@ export class ExperiencePageComponent implements OnInit {
       (isListView) => this.listView = isListView
     )
     this.viewState = JSON.parse(localStorage.getItem('experiencePageIsListView')) === true ? 'listView' : 'gridView';
+    document.querySelector('body').style.overflowX = 'hidden';
+    document.querySelector('html').style.overflowX = 'hidden';
   }
 
   changeView(newView: boolean) {
