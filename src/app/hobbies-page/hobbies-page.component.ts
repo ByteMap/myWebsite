@@ -1,52 +1,54 @@
-import { Component, OnInit } from '@angular/core';
-import { HobbiesPageService } from './hobbies-page.service';
-
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {MediaObserver} from "@angular/flex-layout";
+import {HobbiesPageService} from './hobbies-page.service';
+import {MatDialog} from "@angular/material/dialog";
+import {ContentDialogService} from "../content-dialog/content-dialog.service";
+import {ContentDialogData} from "../content-dialog/content-dialog.component";
+import {hobbies, HobbiesModel} from "../data.model";
+import {hobbiesPageAnimation} from "../animations";
 
 @Component({
   selector: 'app-hobbies-page',
   templateUrl: './hobbies-page.component.html',
   styleUrls: ['./hobbies-page.component.scss'],
+  animations: [ hobbiesPageAnimation ],
+  encapsulation: ViewEncapsulation.None
 })
-export class HobbiesPageComponent implements OnInit {
-  backgroundImage: string;
-  contentContainerColor: string;
-  gamesImage = 'url(\'../assets/images/hobbies-page-images/Games-Background.jpg\')';
-  gamesContainerColor = '#91D6D4';
-  animeImage = 'url(\'../assets/images/hobbies-page-images/Anime-Background.jpg\')';
-  animeContainerColor = '#5297CF';
-  stockImage = 'url(\'../assets/images/hobbies-page-images/Stocks-Background.jpg\')';
-  stockContainerColor = '#8CB8DC';
-  musicImage = 'url(\'../assets/images/hobbies-page-images/Music-Background.jpg\')';
-  musicContainerColor = '#5F676D';
 
-  constructor(private hobbiesPageService: HobbiesPageService) { }
+export class HobbiesPageComponent implements OnInit {
+  listView: boolean;
+  viewState: string;
+  hobbies: Array<HobbiesModel.Hobby> = hobbies;
+
+  constructor(
+    private hobbiesPageService: HobbiesPageService,
+    private dialog: MatDialog,
+    private contentDialogService: ContentDialogService,
+    public mediaObserver: MediaObserver
+  ) { }
 
   ngOnInit(): void {
-    this.backgroundImage = 'url(\'../assets/images/hobbies-page-images/Hobbies-Background.jpg\')';
-    this.hobbiesPageService.backgroundImage$
-      .subscribe(image =>
-        this.backgroundImage = image
-      );
-    this.hobbiesPageService.contentContainerColor$
-      .subscribe(color =>
-        this.contentContainerColor = color
-      );
+    this.hobbiesPageService.currentView$.subscribe(isListView => this.listView = isListView);
+    this.viewState = JSON.parse(localStorage.getItem('hobbiesPageIsListView')) === true ? 'listView' : 'gridView';
   }
 
-  changeBackground(tab) {
-    if (tab.index === 0) {
-      this.hobbiesPageService.changeImage(this.gamesImage);
-      this.hobbiesPageService.changeColor(this.gamesContainerColor);
-    } else if (tab.index === 1) {
-      this.hobbiesPageService.changeImage(this.animeImage);
-      this.hobbiesPageService.changeColor(this.animeContainerColor);
-    } else if (tab.index === 2) {
-      this.hobbiesPageService.changeImage(this.stockImage);
-      this.hobbiesPageService.changeColor(this.stockContainerColor);
-    } else {
-      this.hobbiesPageService.changeImage(this.musicImage);
-      this.hobbiesPageService.changeColor(this.musicContainerColor);
+  openDialog(hobby: HobbiesModel.Hobby) {
+    const contentDialogData: ContentDialogData = {
+      dialogTitle: hobby.title,
+      dialogContent: hobby.content,
+      dialogHeaderStyle: 'font-Droid-Serif fs-50 fw-b',
+      dialogContentStyle: this.mediaObserver.isActive('xs') ? 'body-padding-1 pt-2 font-Droid-Serif fs-40' : 'body-padding-1 pt-2 font-Droid-Serif fs-50'
     }
+    this.contentDialogService.openContentDialog(contentDialogData, "60rem");
   }
 
+  changeView(newView: boolean) {
+    this.hobbiesPageService.changeView(newView);
+    this.viewState = this.viewState === 'listView' ? 'gridView' : 'listView'
+  }
+
+  // Debugging method for Angular animations
+  public handleDone( event: any ) : void {
+    console.log(event)
+  }
 }

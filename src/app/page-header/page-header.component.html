@@ -1,0 +1,19 @@
+<div [class]="mediaObserver.isActive('gt-sm') ? 'header-container' : 'compressed-header-container'">
+  <div class="icon-container-style white-font fs-160" [routerLink]="'/'" fxHide fxShow.gt-sm fxShow.sm>
+    <fa-icon class="icon-style" [matTooltip]="homeToolTip" [icon]="homeIcon"> </fa-icon>
+  </div>
+  <div class="icon-container-style white-font fs-80" [routerLink]="'/'" fxHide fxShow.lt-sm>
+    <fa-icon class="icon-style" [matTooltip]="homeToolTip" [icon]="homeIcon"> </fa-icon>
+  </div>
+
+
+  <div class="font-Arial-Rounded page-title white-font fs-160 va-m" fxHide fxShow.gt-sm fxShow.sm> {{title}} </div>
+  <div class="font-Arial-Rounded page-title white-font fs-60 va-m" fxHide fxShow.lt-sm> {{title}} </div>
+
+  <div class="icon-container-style white-font fs-160" *ngIf="listView" fxHide fxShow.gt-sm>
+    <fa-icon class="icon-style" [icon]="gridIcon" [matTooltip]="gridToolTip" (click)="changeView(false)"></fa-icon>
+  </div>
+  <div class="icon-container-style white-font fs-160" *ngIf="!listView" fxHide fxShow.gt-sm>
+    <fa-icon class="icon-style" [icon]="listIcon" [matTooltip]="listToolTip" (click)="changeView(true)"></fa-icon>
+  </div>
+</div>

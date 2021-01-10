@@ -1,0 +1,13 @@
+<div class="progress-rings-container">
+  <div class="progress-ring-container" *ngFor="let skillData of progressRingData">
+    <div class="progress-circle">
+      <svg [attr.height]="progressRingContainerSize" [attr.width]="progressRingContainerSize">
+        <g [attr.transform]="'translate(' + getSize(progressRingContainerSize, 2, '/') + ',' + getSize(progressRingContainerSize, 2, '/') + ')'">
+          <circle cx="0" cy="0" [attr.r]="progressRingSize"></circle>
+          <text text-anchor="middle" dy=".3em" [style.font-size]="ratingFontSize">{{skillData.rating}}%</text>
+        </g>
+      </svg>
+    </div>
+    <span class="font-Droid-Serif" [style.font-size]="labelFontSize">{{skillData.label}}</span>
+  </div>
+</div>

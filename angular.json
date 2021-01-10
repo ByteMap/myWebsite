@@ -123,6 +123,10 @@
               "devServerTarget": "about-me-site:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }

@@ -3,27 +3,34 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomePageComponent } from './home-page/home-page.component';
 import { HobbiesPageComponent } from './hobbies-page/hobbies-page.component';
 import { ExperiencePageComponent } from './experience-page/experience-page.component';
-import { fadeAnimation } from './animations';
+import { ProjectsPageComponent } from "./projects-page/projects-page.component";
 
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     component: HomePageComponent
   },
   {
     path: 'my-hobbies',
-    component: HobbiesPageComponent
+    component: HobbiesPageComponent,
+    data: { animation: 'hobbiesPage' }
   },
   {
     path: 'my-experience',
     component: ExperiencePageComponent,
     data: { animation: 'experiencePage' }
+  },
+  {
+    path: 'my-projects',
+    component: ProjectsPageComponent,
+    data: { animation: 'projectsPage' }
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class
+AppRoutingModule { }

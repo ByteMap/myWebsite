@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { fadeAnimation } from './animations';
+import { routeAnimation } from './animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [fadeAnimation]
+  animations: [routeAnimation]
 })
 export class AppComponent {
   prepareRoute(outlet: RouterOutlet) {

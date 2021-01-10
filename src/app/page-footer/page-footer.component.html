@@ -1,0 +1,21 @@
+<ng-container *ngIf="mediaObserver.isActive('lt-md') then compressedFooter else uncompressedFooter"></ng-container>
+
+<ng-template #uncompressedFooter>
+  <div class="footer-container font-Droid-Serif fs-40">
+    <div class="center-text"> Created by Andy Chen </div>
+    <div class="row fs-50 flex-center">
+      <fa-icon class="icon-container" [icon]="gitHubIcon"></fa-icon>
+      <fa-icon class="icon-container" [icon]="linkedInIcon"></fa-icon>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #compressedFooter>
+  <div class="footer-container font-Droid-Serif fs-30">
+    <div class="center-text"> Created by Andy Chen </div>
+    <div class="row fs-40 flex-center">
+      <fa-icon class="icon-container" [icon]="gitHubIcon"></fa-icon>
+      <fa-icon class="icon-container" [icon]="linkedInIcon"></fa-icon>
+    </div>
+  </div>
+</ng-template>

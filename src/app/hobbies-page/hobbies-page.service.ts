@@ -1,21 +1,20 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable()
 export class HobbiesPageService {
-  private image = new BehaviorSubject<string>('url(\'../assets/images/hobbies-page-images/Games-Background.jpg\')');
-  private color = new BehaviorSubject<string>('#91D6D4');
-  backgroundImage$ = this.image.asObservable();
-  contentContainerColor$ = this.color.asObservable();
+  listViewState: boolean;
+  private listView;
+  currentView$: Observable<boolean>;
 
-  constructor() { }
-
-  changeImage(newImage) {
-    this.image.next(newImage);
+  constructor() {
+    this.listViewState = localStorage.getItem('hobbiesPageIsListView') ? JSON.parse(localStorage.getItem('hobbiesPageIsListView')) : true;
+    this.listView = new BehaviorSubject<boolean>(this.listViewState);
+    this.currentView$ = this.listView.asObservable();
   }
 
-  changeColor(newColor) {
-    this.color.next(newColor);
+  changeView(newView: boolean) {
+    this.listView.next(newView);
+    localStorage.setItem('hobbiesPageIsListView', JSON.stringify(newView));
   }
-
 }

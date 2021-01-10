@@ -1,0 +1,103 @@
+.timeline-container {
+  display: grid;
+  grid-template-columns: 1fr 5rem 1fr;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  justify-content: center;
+  align-items: baseline;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: #ccc;
+    z-index: 1;
+  }
+}
+
+.timeline-container-compressed {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  justify-content: center;
+  align-items: baseline;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 1.25rem;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: #ccc;
+    z-index: 1;
+  }
+}
+
+.date-left {
+  position: relative;
+  top: 0.5rem;
+  justify-self: end;
+}
+
+.date-right {
+  position: relative;
+  top: 0.5rem;
+  justify-self: start;
+}
+
+.icon-container {
+  position: relative;
+  background: #252A41;
+  border-radius: 25%;
+  width: 2.5rem;
+  height: 2.5rem;
+  top: 1.25rem;
+  justify-self: center;
+  z-index: 1;
+}
+
+.icon {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-container-compressed {
+  position: relative;
+  background: #252A41;
+  border-radius: 25%;
+  width: 2rem;
+  height: 2rem;
+  top: 1rem;
+  justify-self: center;
+  z-index: 1;
+}
+
+.content {
+  background-color: #252A41;
+  padding: 1rem;
+  margin: 2rem 0 2rem 0;
+}
+
+.content-compressed {
+  background-color: #252A41;
+  padding: 1rem;
+  margin: 1.5rem 0 1.5rem 0;
+}
+
+.content-header {
+  word-break: break-word;
+}
+
+.content-date {
+  color: #EBEBEB;
+}
+

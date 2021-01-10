@@ -1,11 +1,344 @@
+* {
+  box-sizing: border-box;
+}
+
 .home-container {
-  background-color: black;
-  height: 100%;
-  width: 100%;
+  box-sizing: border-box;
+  overflow: auto;
 }
 
 .home-header {
-  color: white;
-  font-weight: bold;
-  font-size: 5rem;
+  display: flex;
+  position: fixed;
+  box-sizing: border-box;
+  align-items: center;
+  height: 3.5rem;
+  width: 100%;
+  padding-left: 5%;
+  padding-right: 5%;
+  box-shadow: 0 0.5rem 0.5rem rgba(0,0,0,0.1);
+  z-index: 2;
+}
+
+.home-header-color {
+  background-color: #252A41;
+}
+
+.header-icon-element {
+  cursor: pointer;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+
+  transform: scale(1);
+  transition: all ease 1s;
+}
+
+.header-icon-element:hover {
+  color: #EBEBEB;
+  transition: all ease 1s;
+}
+
+.header-links-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sidebar-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  transform: translateX(110%);
+  height: 100vh;
+  width: max(30vw, 10rem);
+  background-color: #252A41;
+  padding: 1.25rem;
+  box-shadow: 0rem 0.5rem 0.5rem rgba(0,0,0,0.65);
+}
+
+.sidebar-exit {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: inherit;
+}
+
+.text-button-element {
+  position: relative;
+  max-width: fit-content;
+  background: none;
+  border: 0;
+  box-sizing: border-box;
+  padding: .5rem .5rem;
+  cursor: pointer;
+
+  &::before,
+  &::after {
+    box-sizing: inherit;
+    content: '';
+    position: absolute;
+  }
+}
+
+.homePage-sections {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+.compressed-homePage-sections {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.compressed-sections-padding {
+  padding: 10%;
+}
+
+.supercompressed-sections-padding {
+  padding: 20% 10%;
+}
+
+.banner-section {
+  height: auto;
+  min-height: auto;
+  padding: 5% 10%;
+}
+
+.intro-button {
+  margin-top: 2rem;
+  color: #EBEBEB;
+  text-align: center;
+  box-shadow: inset 0 0 0 .1rem #EBEBEB;
+  transition: all ease 0.5s;
+
+  &:hover {
+    color : #C9CAF8;
+    transition: all ease 0.5s;
+  }
+}
+
+.sections-compressed {
+  flex-direction: column;
+  justify-content: center;
+}
+
+.home-image-container {
+  float: right;
+  flex-shrink: 1;
+  width: 50%;
+}
+
+.supercompressed-image-container {
+  width: 75%;
+}
+
+.profile-image {
+  border-radius: 15%;
+  width: 100%;
+}
+
+.vertical-divider {
+  border-right: 0.1rem solid #B7B8F5;
+  height: 12rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.desc-container {
+  float: left;
+  flex-shrink: 1;
+  width: 100%;
+}
+
+.name {
+  color: #D1D2F9;
+}
+
+.horizontal-divider {
+  display: block;
+  margin-top: 0;
+  border: 0;
+  border-top: 0.02rem solid;
+  width: 100%;
+}
+
+.intro-compressed-divider {
+  border: 0;
+  border-top: 0.1rem solid;
+  width: 100%;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.grid-view-card-style {
+  height: 15rem;
+  margin: 0.5rem;
+}
+
+// Does not inherit
+.border-animation {
+  // Set up base styles, we're going to scale instead of animating width/height
+  &::before,
+  &::after {
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    transform-origin: top left; // Ensure scaling is done from the center (expands outwards)
+    transition: 0.5s ease-out;
+  }
+
+  // scale3d(<scale-horizontal>, <scale-vertical>, <scale-depth>);
+  &::before {
+    border-top: .1rem solid #8182EF;
+    border-bottom: .1rem solid #8182EF;
+    transform: scale3d(0,1,1); // Shrink only width
+  }
+
+  &::after {
+    border-left: .1rem solid #8182EF;
+    border-right: .1rem solid #8182EF;
+    transform: scale3d(1,0,1); // Shrink only height
+  }
+
+  &:hover::before,
+  &:hover::after {
+    transform: scale3d(1,1,1); // Show full-size
+    transition: transform 0.5s;
+  }
+}
+
+.image-box {
+  background: var(--url) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  width: 100vw;
+  height: 100%;
+  box-shadow: inset 0 0 0 100vw rgba(0,0,0,0.35);
+}
+
+.image-box-scroll {
+  background-attachment: scroll;
+}
+
+.skills-container {
+  display: flex;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.compressed-skill-names-container {
+  overflow-x: auto;
+}
+
+.skill-name-container {
+  display: flex;
+  flex: 0 0 auto;
+  margin: 0.5rem;
+  background-color: #C9CAF8;
+  color: #252A41;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color .5s;
+
+  &:hover {
+    background-color: #EBEBEB;
+    transition: background-color .5s;
+  }
+}
+
+.skill-name-container-size {
+  width: 15rem;
+  height: 3rem;
+  border-radius: .5rem;
+}
+
+.compressed-skill-name-container-size {
+  width: 5.5rem;
+  height: 1.75rem;
+  border-radius: .25rem;
+}
+
+.skill-description-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.skill-desc-title {
+  text-align: center;
+}
+
+.skill-desc-desc {
+  margin-top: 2rem;
+  margin-right: 5rem;
+  margin-left: 5rem;
+}
+
+.compressed-skill-desc-desc {
+  margin-top: 2rem;
+  max-height: 12rem;
+  overflow-y: auto;
+}
+
+.redirect-card {
+  display: flex;
+  background-color: transparent;
+  box-shadow: inset 0 0 0 100vw rgba(0,0,0,0.4);
+  border: .1rem solid #EBEBEB;
+  width: 100%;
+  height: 12rem;
+}
+
+.compressed-redirect-card-style {
+  height: 6rem;
+  margin-bottom: 1rem;
+}
+
+.more-info-title {
+  position: absolute;
+  opacity: 1;
+  transition: opacity ease .75s;
+}
+
+.more-info-icon {
+  top: 0;
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  transition: all ease .75s;
+}
+
+.redirect-card:hover .more-info-title {
+  visibility: hidden;
+  transform: translateX(100%);
+  opacity: 0;
+  transition: all ease .75s;
+}
+
+.redirect-card:hover .more-info-icon {
+  visibility: visible;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 1;
+  transition: all ease .75s;
+}
+
+.conclusion {
+  margin-bottom: 5rem;
+}
+
+.compressed-conclusion {
+  margin-bottom: 2rem;
 }
