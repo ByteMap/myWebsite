@@ -6,15 +6,16 @@
 </page-header>
 <ng-container *ngIf="listView === false || mediaObserver.isActive('lt-md') then gridList else defaultView">
 </ng-container>
+<page-footer></page-footer>
 
 <ng-template #gridList>
-  <div class="flex-center" [class]="mediaObserver.isActive('xs') ? 'compressed-card-view-style' : 'grid-view-card-style pt-3'"
+  <div [@hobbiesPageAnimation]="viewState" class="flex-center" [class]="mediaObserver.isActive('xs') ? 'compressed-card-view-style' : 'grid-view-card-style pt-3'"
        fxLayout="row wrap" fxLayoutGap.gt-xs="5.5rem grid">
-    <div [class]="mediaObserver.isActive('xs') ? 'pt-custom' : ''" fxFlex="33%" fxFlex.xs="100%" fxFlex.lt-lg="50%" *ngFor="let hobby of hobbies">
-      <mat-card class="card-style card-style-pointer custom-card-height flex-column mat-elevation-z4" (click)="openDialog(hobby)">
-        <div class="font-Droid-Serif fs-50 fw-b"> {{hobby.title}} </div>
-        <div class="hobbies-image-container">
-          <img class="grid-image-style" mat-card-image src="{{hobby.imagePath}}"/>
+    <div [class]="mediaObserver.isActive('xs') ? 'pt-custom' : ''" fxFlex="33%" fxFlex.lt-md="100%" fxFlex.lt-lg="50%" *ngFor="let hobby of hobbies; let i = index">
+      <mat-card class="card-style card-style-pointer custom-card-height flex-column mat-elevation-z4" (click)="openDialog(hobby)" [ngClass]="'hobby'+i">
+        <div class="font-Droid-Serif fs-50 fw-b center-text"> {{hobby.title}} </div>
+        <div class="grid-hobbies-icon-container flex-center">
+          <fa-icon class="hobbies-icon-style" [icon]="hobby.icon"></fa-icon>
         </div>
       </mat-card>
     </div>
@@ -22,15 +23,17 @@
 </ng-template>
 
 <ng-template #defaultView>
-  <div class="sections" *ngFor="let hobby of hobbies">
-    <mat-card class="card-style default-view-card-style mat-elevation-z4">
-      <div class="image-container">
-        <img class="row-100" src="{{hobby.imagePath}}"/>
-      </div>
-      <div class="desc-container pl-3">
-        <div class="font-Droid-Serif fs-50 fw-b"> {{hobby.title}} </div>
-        <div class="font-Droid-Serif fs-50 pt-2" [innerHTML]="hobby.content"></div>
-      </div>
-    </mat-card>
+  <div [@hobbiesPageAnimation]="viewState">
+    <div class="sections" *ngFor="let hobby of hobbies; let i = index">
+      <mat-card class="card-style default-view-card-style mat-elevation-z4" [ngClass]="'hobby'+i">
+        <div class="hobbies-icon-container flex-center">
+          <fa-icon class="hobbies-icon-style" [icon]="hobby.icon"></fa-icon>
+        </div>
+        <div class="desc-container pl-3">
+          <div class="font-Droid-Serif fs-50 fw-b"> {{hobby.title}} </div>
+          <div class="font-Droid-Serif fs-50 pt-2" [innerHTML]="hobby.content"></div>
+        </div>
+      </mat-card>
+    </div>
   </div>
 </ng-template>

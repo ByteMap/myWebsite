@@ -7,7 +7,7 @@ export class ProjectsPageService {
   listView: BehaviorSubject<boolean>;
 
   constructor() {
-    this.listViewState = JSON.parse(localStorage.getItem('projectsPageIsListView')) || true;
+    this.listViewState = localStorage.getItem('projectsPageIsListView') ? JSON.parse(localStorage.getItem('projectsPageIsListView')) : true;
     this.listView = new BehaviorSubject<boolean>(this.listViewState);
   }
 

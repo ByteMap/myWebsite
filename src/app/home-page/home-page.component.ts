@@ -1,4 +1,4 @@
-import {Component, ElementRef, HostListener, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { MediaObserver } from "@angular/flex-layout";
 import { Router } from "@angular/router";
 import { fromEvent, Observable } from "rxjs";
@@ -8,7 +8,7 @@ import { homeHeaderAnimation, homeSidebarAnimation, homeIntroAnimation, homeComp
          homeCompressedMoreInfoAnimation, homeConclusionAnimation, homeCompressedConclusionAnimation } from "../animations";
 import { HomeModel, headerElements, timeLineElements, skillElements, moreInfoElements } from "../data.model";
 import { ProgressRingComponent } from "../progress-ring/progress-ring.component";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 enum Direction {
   Up = 'Up',
@@ -58,6 +58,7 @@ export class HomePageComponent implements OnInit {
   timeLineElements: Array<HomeModel.TimeLineElement> = timeLineElements;
   skillElements: Array<HomeModel.SkillElement> = skillElements;
   sidebarIcon = faBars;
+  sidebarExit = faTimes;
 
   constructor(
     private elementRef: ElementRef,
@@ -75,6 +76,8 @@ export class HomePageComponent implements OnInit {
   }
 
   executeMethod(action: HomeModel.ElementAction): void {
+    document.querySelector('body').style.overflow = 'auto';
+    document.getElementById('content').style.filter = 'none';
     switch(action.action) {
       case 'redirect': {
         this.router.navigate([action.parameter]);
@@ -150,7 +153,7 @@ export class HomePageComponent implements OnInit {
   }
 
   @HostListener('document:click', ['$event'])
-  onBodyClick(event): void {
+  onBodyClick(): void {
     this.sidebarToggled = 'hide';
     document.querySelector('body').style.overflow = 'auto';
     document.getElementById('content').style.filter = 'none';
@@ -190,7 +193,7 @@ export class HomePageComponent implements OnInit {
   sendEmail() {
     let subject = "";
     let content = ""
-    document.location.href = "mailto:achen81@ucsc.edu?subject=" + subject + "&body=" + content;
+    document.location.href = "mailto:andychen159@gmail.com?subject=" + subject + "&body=" + content;
   }
 
   public handleDone( event: any ) : void {

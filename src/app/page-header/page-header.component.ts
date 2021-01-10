@@ -18,6 +18,10 @@ export class PageHeaderComponent implements OnInit {
   gridIcon = faTh;
   squareIcon = faSquare;
 
+  homeToolTip: string = 'Return to the home page';
+  listToolTip: string = 'Change to list view';
+  gridToolTip: string = 'Change to grid view';
+
   constructor(public mediaObserver: MediaObserver) {}
 
   ngOnInit() {}

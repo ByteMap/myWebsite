@@ -1,4 +1,6 @@
 .progress-rings-container {
+  display: -webkit-flex;
+  display: -moz-flex;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -7,12 +9,16 @@
 }
 
 .progress-ring-container {
+  display: -webkit-flex;
+  display: -moz-flex;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .progress-circle {
+  display: -webkit-flex;
+  display: -moz-flex;
   display: flex;
   justify-content: center;
   margin-left: 1rem;

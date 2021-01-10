@@ -8,13 +8,13 @@ import { ProjectsPageComponent } from "./projects-page/projects-page.component";
 
 const routes: Routes = [
   {
-    path: 'home',
-    component: HomePageComponent,
-    data: { animation: 'homePage' }
+    path: '',
+    component: HomePageComponent
   },
   {
     path: 'my-hobbies',
-    component: HobbiesPageComponent
+    component: HobbiesPageComponent,
+    data: { animation: 'hobbiesPage' }
   },
   {
     path: 'my-experience',
@@ -23,7 +23,8 @@ const routes: Routes = [
   },
   {
     path: 'my-projects',
-    component: ProjectsPageComponent
+    component: ProjectsPageComponent,
+    data: { animation: 'projectsPage' }
   }
 ];
 

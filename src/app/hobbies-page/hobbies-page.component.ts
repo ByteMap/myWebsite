@@ -4,78 +4,20 @@ import { HobbiesPageService } from './hobbies-page.service';
 import { MatDialog } from "@angular/material/dialog";
 import { ContentDialogService } from "../content-dialog/content-dialog.service";
 import { ContentDialogData } from "../content-dialog/content-dialog.component";
-
-export interface Hobby {
-  title: string;
-  content: string;
-  imagePath: string;
-}
+import { hobbies, HobbiesModel } from "../data.model";
+import {hobbiesPageAnimation} from "../animations";
 
 @Component({
   selector: 'app-hobbies-page',
   templateUrl: './hobbies-page.component.html',
-  styleUrls: ['./hobbies-page.component.scss']
+  styleUrls: ['./hobbies-page.component.scss'],
+  animations: [ hobbiesPageAnimation ]
 })
 
 export class HobbiesPageComponent implements OnInit {
   listView: boolean;
-
-  hobbies: Array<Hobby> = [
-    { title:   'Anime & Manga',
-      content: `<div>
-                  I've loved watching Animes and reading Mangas ever since I was in middle school. For me,
-                  these two hobbies were not only a form of entertainment, but also a way for me to forget
-                  about my problems for a short amount of time. They have ultimately acted as my best coping
-                  mechanism for stress and anxiety, which allowed me to reset myself and perform even better
-                  on things such as work and school.
-                  <div class="pt-2">
-                    Some of my favorite Animes and Mangas are: <b>Re:Zero, Steins;Gate, and Gundam 00</b>
-                  </div>
-                </div>`,
-      imagePath: '../assets/images/hobbies-page-images/anime-image.png' },
-    { title:   'Games',
-      content: `<div>
-                  Programming is my job as well as my hobby. During my weekends and holidays, I would try to at least
-                  progress a little bit with my projects and discover new frameworks and libraries to use. Most of my
-                  projects are centered around visualizing data and aiding users such as myself. For example, LinkMarker
-                  was created so that I could visually blacklist mangas as some of them would have poor stories, but
-                  fantastic covers which baits me into clicking on their links every time they update with a new chapter.
-                  All in all, building new things gives me a sense of satisfaction, which I really love.
-                </div>`,
-      imagePath: '../assets/images/hobbies-page-images/game-image.png' },
-    { title:   'Investing',
-      content: `<div>
-                  Programming is my job as well as my hobby. During my weekends and holidays, I would try to at least
-                  progress a little bit with my projects and discover new frameworks and libraries to use. Most of my
-                  projects are centered around visualizing data and aiding users such as myself. For example, LinkMarker
-                  was created so that I could visually blacklist mangas as some of them would have poor stories, but
-                  fantastic covers which baits me into clicking on their links every time they update with a new chapter.
-                  All in all, building new things gives me a sense of satisfaction, which I really love.
-                </div>`,
-      imagePath: '../assets/images/hobbies-page-images/investing-image.png' },
-    { title:   'Programming',
-      content: `<div>
-                  Programming is my job as well as my hobby. During my weekends and holidays, I would try to at least
-                  progress a little bit with my projects and discover new frameworks and libraries to use. Most of my
-                  projects are centered around visualizing data and aiding users such as myself. For example, LinkMarker
-                  was created so that I could visually blacklist mangas as some of them would have poor stories, but
-                  fantastic covers which baits me into clicking on their links every time they update with a new chapter.
-                  All in all, building new things gives me a sense of satisfaction, which I really love.
-                </div>`,
-      imagePath: '../assets/images/hobbies-page-images/programming-image.png' },
-    { title:   'Music',
-      content: `<div>
-                  I've loved watching Animes and reading Mangas ever since I was in middle school. For me,
-                  these two hobbies were not only a form of entertainment, but also a way for me to forget
-                  about my problems for a short amount of time. They have ultimately acted as my best coping
-                  mechanism for stress and anxiety, which allowed me to reset myself and perform even better
-                  on things such as work and school.
-                  <div class="pt-2">
-                    Some of my favorite Animes and Mangas are: <b>Re:Zero, Steins;Gate, and Gundam 00</b>
-                  </div>
-                </div>`,
-      imagePath: '../assets/images/hobbies-page-images/music-image.png' },
-  ];
+  viewState: string;
+  hobbies: Array<HobbiesModel.Hobby> = hobbies;
 
   constructor(
     private hobbiesPageService: HobbiesPageService,
@@ -85,17 +27,15 @@ export class HobbiesPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.hobbiesPageService.currentView$
-      .subscribe(isListView =>
-        this.listView = isListView
-      );
+    this.hobbiesPageService.currentView$.subscribe(isListView => this.listView = isListView);
+    this.viewState = JSON.parse(localStorage.getItem('hobbiesPageIsListView')) === true ? 'listView' : 'gridView';
   }
 
-  openDialog(hobby: Hobby) {
+  openDialog(hobby: HobbiesModel.Hobby) {
     const contentDialogData: ContentDialogData = {
       dialogTitle: hobby.title,
       dialogContent: hobby.content,
-      dialogHeaderStyle: this.mediaObserver.isActive('xs') ? 'font-Droid-Serif fs-50 row title' : 'font-Droid-Serif fs-50',
+      dialogHeaderStyle: 'font-Droid-Serif fs-50 fw-b',
       dialogContentStyle: this.mediaObserver.isActive('xs') ? 'body-padding-1 pt-2 font-Droid-Serif fs-40' : 'body-padding-1 pt-2 font-Droid-Serif fs-50'
     }
     this.contentDialogService.openContentDialog(contentDialogData, "60rem");
@@ -103,5 +43,11 @@ export class HobbiesPageComponent implements OnInit {
 
   changeView(newView: boolean) {
     this.hobbiesPageService.changeView(newView);
+    this.viewState = this.viewState === 'listView' ? 'gridView' : 'listView'
+  }
+
+  // Debugging method for Angular animations
+  public handleDone( event: any ) : void {
+    console.log(event)
   }
 }

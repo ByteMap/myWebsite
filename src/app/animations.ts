@@ -13,12 +13,12 @@ export const homeIntroAnimation = trigger('homeIntroAnimation', [
       { optional: true }),
     group([
       query('.intro-left', [
-        style({ opacity: 0, transform: 'translateX(15%)' }),
+        style({ opacity: 0, transform: 'translateX(10%)' }),
         animate('1s'),
         style({ opacity: 1, transform: 'translateX(0)' })
       ]),
       query('.intro-right', [
-        style({ opacity: 0, transform: 'translateX(-15%)' }),
+        style({ opacity: 0, transform: 'translateX(-10%)' }),
         animate('1s'),
         style({ opacity: 1, transform: 'translateX(0)' })
       ]),
@@ -517,7 +517,7 @@ export const homeCompressedConclusionAnimation = trigger('homeCompressedConclusi
   ])
 ]);
 
-export const experiencePageAnimation = trigger('routeAnimations', [
+export const routeAnimation = trigger('routeAnimations', [
   // The '* => *' will trigger the animation to change between any two states
   transition('* => experiencePage', [
     // The query function has three params.
@@ -525,68 +525,143 @@ export const experiencePageAnimation = trigger('routeAnimations', [
     // Second is a list of styles or animations to apply.
     // Third we add a config object with optional set to true, this is to signal
     // angular that the animation may not apply as it may or may not be in the DOM.
-    query(':enter', style({ position: 'fixed', width: '100%', height: '100%'}), { optional: true }),
-    query('.experience1, .experience0', [style({ opacity: 0 })], { optional: true }),
-    group([
-      query(':enter',
-        [
-          style({ opacity: 0 }),
-          animate('0.65s'),
-          style({ opacity: 1 })
-          ],
-        { optional: true }),
-    ]),
+    query('.experience1, .experience0', [style({ opacity: 0 })]),
     query('.experience0',
       [
         style({opacity: 0}),
         animate('0.65s'),
-        style({ opacity: 1})
-      ],
-      {optional: true}),
+    ]),
     query('.experience1',
       [
         style({opacity: 0}),
         animate('0.65s'),
-        style({ opacity: 1})
-      ],
-      {optional: true}),
-    ])
+    ]),
+  ]),
+  transition('* => hobbiesPage', [
+    query('.hobby0, .hobby1, .hobby2, .hobby3, .hobby4', [style({ opacity: 0 })]),
+    query('.hobby0',
+      [
+        style({opacity: 0}),
+        animate('0.65s'),
+    ]),
+    query('.hobby1',
+      [
+        style({opacity: 0}),
+        animate('0.65s'),
+    ]),
+    query('.hobby2',
+      [
+        style({opacity: 0}),
+        animate('0.65s'),
+    ]),
+    query('.hobby3',
+      [
+        style({opacity: 0}),
+        animate('0.65s'),
+    ]),
+    query('.hobby4',
+      [
+        style({opacity: 0}),
+        animate('0.65s'),
+    ]),
+  ]),
+  transition('* => projectsPage', [
+    query('.project0, .project1, .project2, .project3', [style({ opacity: 0 })]),
+    query('.project0',
+      [
+        style({opacity: 0}),
+        animate('0.65s'),
+      ]),
+    query('.project1',
+      [
+        style({opacity: 0}),
+        animate('0.65s'),
+      ]),
+    query('.project2',
+      [
+        style({opacity: 0}),
+        animate('0.65s'),
+      ]),
+    query('.project3',
+      [
+        style({opacity: 0}),
+        animate('0.65s'),
+      ]),
+  ]),
 ]);
 
-export const cardFadeInAnimation = trigger('experiencePageAnimation', [
-  transition('* => gridView', [
-    query('.experience0, .experience1', [style({ opacity: 0 })], { optional: true }),
+export const experiencePageAnimation = trigger('experiencePageAnimation', [
+  transition('void => *', [
+    query('.experience0, .experience1', [style({ opacity: 0 })]),
     query('.experience0',
       [
         style({opacity: 0}),
         animate('0.65s'),
         style({ opacity: 1})
-      ],
-      {optional: true}),
+      ]),
     query('.experience1',
       [
         style({opacity: 0}),
         animate('0.65s'),
         style({ opacity: 1})
-      ],
-      {optional: true}),
-  ]),
-  transition('* => listView', [
-    query('.experience0, .experience1', [style({ opacity: 0 })], { optional: true }),
-    query('.experience0',
+      ])
+  ])
+]);
+
+export const projectsPageAnimation = trigger('projectsPageAnimation', [
+  transition('void => *', [
+    query('.project0, .project1, .project2, .project3', [style({ opacity: 0 })]),
+    query('.project0',
       [
         style({opacity: 0}),
         animate('0.65s'),
-        style({ opacity: 1})
-      ],
-      {optional: true}),
-    query('.experience1',
+    ]),
+    query('.project1',
       [
         style({opacity: 0}),
         animate('0.65s'),
-        style({ opacity: 1})
-      ],
-      {optional: true}),
+    ]),
+    query('.project2',
+      [
+        style({opacity: 0}),
+        animate('0.65s'),
+    ]),
+    query('.project3',
+      [
+        style({opacity: 0}),
+        animate('0.65s'),
+    ])
+  ])
+]);
+
+export const hobbiesPageAnimation = trigger('hobbiesPageAnimation', [
+  transition('void => *', [
+    query('.hobby0, .hobby1, .hobby2, .hobby3, .hobby4', [style({ opacity: 0 })]),
+    query('.hobby0',
+      [
+        style({opacity: 0}),
+        animate('0.65s'),
+    ]),
+    query('.hobby1',
+      [
+        style({opacity: 0}),
+        animate('0.65s'),
+    ]),
+    query('.hobby2',
+      [
+        style({opacity: 0}),
+        animate('0.65s'),
+    ]),
+    query('.hobby3',
+      [
+        style({opacity: 0}),
+        animate('0.65s'),
+    ]),
+    query('.hobby4',
+      [
+        style({opacity: 0}),
+        animate('0.65s'),
+    ])
   ])
 ]);
 

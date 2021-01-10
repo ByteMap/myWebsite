@@ -1,20 +1,20 @@
 <div class="home-container">
   <ng-container *ngIf="mediaObserver.isActive('lt-md') then compressedHeader else uncompressedHeader" (mouseover)="displayHeaderAnimation()"></ng-container>
   <div id="content">
-    <section id="intro-section" class="home-section image-box" style="--url: url('../../assets/images/home-page-images/intro-image.jpeg')">
+    <section id="intro-section" class="home-section image-box" [ngClass]="{'image-box-scroll': mediaObserver.isActive('lt-lg')}" style="--url: url('../../assets/images/home-page-images/intro-image.jpeg')">
       <ng-container *ngIf="mediaObserver.isActive('lt-lg') then compressedIntro else uncompressedIntro"></ng-container>
     </section>
     <section id="about-section" class="home-section">
       <ng-container *ngIf="mediaObserver.isActive('lt-md') then compressedAbout else uncompressedAbout"></ng-container>
     </section>
-    <section id="timeline-section" class="home-section image-box compressed-homePage-sections flex-column pt-3 pb-3" style="--url: url('../../assets/images/home-page-images/skills-background.jpeg')">
+    <section id="timeline-section" class="home-section image-box compressed-homePage-sections flex-column pt-3 pb-3" [ngClass]="{'image-box-scroll': mediaObserver.isActive('lt-lg')}" style="--url: url('../../assets/images/home-page-images/skills-background.jpeg')">
       <ng-container *ngIf="mediaObserver.isActive('lt-md') then compressedTimelineHeader else uncompressedTimelineHeader"></ng-container>
       <timeline [@timelineAnimation]="timelineSectionAnimationState" [data]="timeLineElements"></timeline>
     </section>
     <section id="skills-section" class="home-section">
       <ng-container *ngIf="mediaObserver.isActive('lt-md') then compressedSkills else uncompressedSkills"></ng-container>
     </section>
-    <section id="moreInfo-section" class="home-section image-box" style="--url: url('../../assets/images/home-page-images/moreInfo-background.jpeg')">
+    <section id="moreInfo-section" class="home-section image-box" [ngClass]="{'image-box-scroll': mediaObserver.isActive('lt-lg')}" style="--url: url('../../assets/images/home-page-images/moreInfo-background.jpeg')">
       <ng-container *ngIf="mediaObserver.isActive('lt-md') then compressedMoreInfo else uncompressedMoreInfo"></ng-container>
     </section>
     <section id="conclusion-section" class="home-section">
@@ -25,7 +25,7 @@
 </div>
 
 <ng-template #uncompressedHeader>
-  <div [@homeHeaderAnimation]="headerIsVisible" id="header" class="home-header font-Droid-Serif fs-60">
+  <div [@homeHeaderAnimation]="headerIsVisible" (@homeHeaderAnimation.done)="handleDone($event)" id="header" class="home-header font-Droid-Serif fs-60">
     <div class="row w-100">
       <div class="header-icon-element fs-80" (click)="executeMethod(element.elementAction)" *ngFor="let element of headerElements[0]">
         <fa-icon [icon]="element.elementIcon"></fa-icon>
@@ -50,6 +50,7 @@
       <fa-icon [icon]="sidebarIcon" (click)="toggleSidebar($event)"></fa-icon>
     </div>
     <div [@homeSidebarAnimation]="sidebarToggled" class="sidebar-container flex-column flex-center" (click)="$event.stopPropagation()">
+      <fa-icon class="sidebar-exit" [icon]="sidebarExit" (click)="onBodyClick()"></fa-icon>
       <div class="text-button-element border-animation pt-1 mt-1" (click)="executeMethod(element.elementAction)" *ngFor="let element of headerElements[1]">
         {{element.elementName}}
       </div>
@@ -58,7 +59,7 @@
 </ng-template>
 
 <ng-template #uncompressedIntro>
-  <section [@homeIntroAnimation]="introSectionAnimationState" (@homeIntroAnimation.done)="handleDone($event)" class="homePage-sections font-Arial-Rounded flex-column" [ngClass]="'homeIntro'">
+  <section [@homeIntroAnimation]="introSectionAnimationState" class="homePage-sections font-Arial-Rounded flex-column" [ngClass]="'homeIntro'">
     <div class="row-100 flex-center center-text">
       <div class="w-100 intro-left">
         <div>Hi, nice to meet you!</div>

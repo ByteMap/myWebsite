@@ -8,9 +8,16 @@
   flex-direction: column;
 }
 
+.title {
+  position: absolute;
+  text-align: center;
+}
+
 .logo-container {
-  float: left;
+  display: flex;
+  height: 100%;
   align-self: center;
+  align-items: center;
 }
 
 .display-image-container {
